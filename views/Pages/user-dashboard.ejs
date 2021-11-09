@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- ===== Head tag ======= -->
+    <!-- This contains many css jquery bootstrap files -->
+    <%- include("../Components/headTag.ejs") %>
+    <!-- ===== End Head tag ======= -->
+    <style>
+      .dashLogo {
+        /* position: fixed; */
+        flex: 0.08;
+        top: 0;
+        left: 0;
+        width: 100%;
+      }
+      .dashLogo h1 {
+        font-size: 24px;
+        padding: 12px 30px 12px 30px;
+        line-height: 1;
+        color: #fff;
+        font-weight: 600;
+        background-color: #810303;
+      }
+
+      .dashNav {
+        position: fixed;
+        height: 49px;
+        background-color: rgb(231, 230, 230);
+        box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+        z-index: 1000;
+      }
+      .mainArea {
+        display: flex;
+      }
+      .leftPanel {
+        z-index: 1001;
+        display: flex;
+        flex-direction: column;
+        background-color: #351414;
+        position: fixed;
+        height: 100%;
+        width: 20%;
+      }
+      .srcollable {
+        top: 100px;
+        margin: 4px, 4px;
+        padding: 10px;
+        overflow-x: hidden;
+        overflow-y: auto;
+        text-align: justify;
+        scroll-behavior: smooth;
+      }
+    </style>
+  </head>
+  <body style="padding: 0; margin: 0">
+    <!-- ================================================= -->
+    <div class="dashNav">
+      <p
+        style="
+          color: #810303;
+          padding-right: 18px;
+          font-weight: 600;
+          cursor: pointer;
+        "
+      >
+        <%=USER.firstName%>
+      </p>
+    </div>
+
+    <div class="leftPanel">
+      <div class="dashLogo"><h1>Vishwakarma.H.A</h1></div>
+      <div class="srcollable">
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo
+          doloribus corporis fugiat iste, illum ut, aut ad ipsam sint voluptate
+          reprehenderit qui corrupti modi consequatur nam aliquid nulla labore
+          provident.
+        </p>
+
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo
+          doloribus corporis fugiat iste, illum ut, aut ad ipsam sint voluptate
+          reprehenderit qui corrupti modi consequatur nam aliquid nulla labore
+          provident.
+        </p>
+
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo
+          doloribus corporis fugiat iste, illum ut, aut ad ipsam sint voluptate
+          reprehenderit qui corrupti modi consequatur nam aliquid nulla labore
+          provident.
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo
+          doloribus corporis fugiat iste, illum ut, aut ad ipsam sint voluptate
+          reprehenderit qui corrupti modi consequatur nam aliquid nulla labore
+          provident.
+        </p>
+
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo
+          doloribus corporis fugiat iste, illum ut, aut ad ipsam sint voluptate
+          reprehenderit qui corrupti modi consequatur nam aliquid nulla labore
+          provident.
+        </p>
+
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo
+          doloribus corporis fugiat iste, illum ut, aut ad ipsam sint voluptate
+          reprehenderit qui corrupti modi consequatur nam aliquid nulla labore
+          provident.
+        </p>
+
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo
+          doloribus corporis fugiat iste, illum ut, aut ad ipsam sint voluptate
+          reprehenderit qui corrupti modi consequatur nam aliquid nulla labore
+          provident.
+        </p>
+
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo
+          doloribus corporis fugiat iste, illum ut, aut ad ipsam sint voluptate
+          reprehenderit qui corrupti modi consequatur nam aliquid nulla labore
+          provident.
+        </p>
+        <div style="height: 1000px"></div>
+      </div>
+    </div>
+
+    <!-- ======================================= -->
+    <!-- ======================================= -->
+    <div class="mainArea">
+      <!-- leaving the area on the left for use by control panel-->
+      <!-- ================== -->
+      <div style="flex: 0.2"></div>
+      <!-- =================== -->
+      <div style="flex: 0.8; height: 1000px">
+        <div class="container jumbotron" style="margin-top: 8%">
+          <h1 style="text-align: center">
+            Welcome <%=USER.firstName%>, hope you are doing great!!
+          </h1>
+        </div>
+
+        <section>
+          <div class="container jumbotron">
+            <div class="row">
+              <div class="btn-group-vertical col-sm-3" style="height: 150px">
+                <button
+                  type="button"
+                  class="btn dashboard-nav"
+                  onclick="bringRemoteForm()"
+                >
+                  Remote
+                </button>
+                <button type="button" class="btn dashboard-nav">
+                  Settings
+                </button>
+                <button type="button" class="btn dashboard-nav">Profile</button>
+              </div>
+              <div class="card col-sm-9">
+                <div class="card-body" id="somethingBplaced"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section>
+          <div class="container jumbotron">
+            <div class="row">
+              <div class="btn-group-vertical col-sm-3" style="height: 150px">
+                <button
+                  type="button"
+                  class="btn dashboard-nav"
+                  onclick="bringRemoteForm()"
+                >
+                  Remote
+                </button>
+                <button type="button" class="btn dashboard-nav">
+                  Settings
+                </button>
+                <button type="button" class="btn dashboard-nav">Profile</button>
+              </div>
+              <div class="card col-sm-9">
+                <div class="card-body" id="somethingBplaced"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section>
+          <div class="container jumbotron">
+            <div class="row">
+              <div class="btn-group-vertical col-sm-3" style="height: 150px">
+                <button
+                  type="button"
+                  class="btn dashboard-nav"
+                  onclick="bringRemoteForm()"
+                >
+                  Remote
+                </button>
+                <button type="button" class="btn dashboard-nav">
+                  Settings
+                </button>
+                <button type="button" class="btn dashboard-nav">Profile</button>
+              </div>
+              <div class="card col-sm-9">
+                <div class="card-body" id="somethingBplaced"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section>
+          <div class="container jumbotron">
+            <div class="row">
+              <div class="btn-group-vertical col-sm-3" style="height: 150px">
+                <button
+                  type="button"
+                  class="btn dashboard-nav"
+                  onclick="bringRemoteForm()"
+                >
+                  Remote
+                </button>
+                <button type="button" class="btn dashboard-nav">
+                  Settings
+                </button>
+                <button type="button" class="btn dashboard-nav">Profile</button>
+              </div>
+              <div class="card col-sm-9">
+                <div class="card-body" id="somethingBplaced"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- =============================================== -->
+
+    <!-- Footer scripts -->
+    <!-- Contains all js and more for website -->
+    <%- include("../Components/footerScripts.ejs") %>
+    <!-- End Footer scripts  -->
+  </body>
+  <script>
+    !function ($) {
+      "use strict";
+    };
+  </script>
+</html>

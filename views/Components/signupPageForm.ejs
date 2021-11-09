@@ -1,0 +1,112 @@
+<section id="contact" class="contact">
+  <div id="container" class="container">
+    <div id="signUpFormHere" class="row">
+      <div class="col-lg-7" data-aos="fade-right">
+        <div class="section-title">
+          <h2>Create new account</h2>
+          <p></p>
+        </div>
+      </div>
+
+      <form
+        action="/sign_up"
+        method="post"
+        role="form"
+        class="php-email-form php2-email-form mt-6 col-md-4 main"
+      >
+        <!-- ====================  First name  ======================= -->
+        <div class="form-group">
+          <input
+            type="text"
+            name="firstName"
+            class="form-control box"
+            id="firstName"
+            placeholder="First Name"
+            data-rule="minlen:2"
+            data-msg="Please enter at least 2 characters.*"
+          />
+          <div class="validate"></div>
+        </div>
+        <!-- ====================  end first name  ======================= -->
+
+        <!-- ====================  last name  ======================= -->
+        <div class="form-group">
+          <input
+            type="text"
+            name="lastName"
+            class="form-control box"
+            id="lastName"
+            placeholder="Last Name"
+            data-rule="minlen:0"
+          />
+          <div class="validate"></div>
+        </div>
+        <!-- ====================  end last name  ======================= -->
+
+        <!-- ====================  Phone  ======================= -->
+        <div class="form-group">
+          <input
+            type="phone"
+            class="form-control box"
+            name="phone"
+            id="phone"
+            placeholder="Your Phone no."
+            data-msg="Phone number must be of 10 digits.*"
+          />
+          <div class="validate"></div>
+        </div>
+        <!-- ====================  end phone  ======================= -->
+
+        <!-- ====================  email  ======================= -->
+        <div class="form-group">
+          <input
+            type="email"
+            class="form-control box"
+            name="email"
+            id="email"
+            placeholder="Your Email"
+            data-rule="email"
+            data-msg="Please enter a valid email.*"
+          />
+          <div class="validate"></div>
+        </div>
+        <!-- ====================  end email  ======================= -->
+
+        <!-- ====================  Password  ======================= -->
+        <div class="form-group">
+          <input
+            type="password"
+            class="form-control box"
+            name="password"
+            id="password"
+            placeholder="Password"
+            data-rule="password"
+            data-msg="Password must contain one numeric, one special character and 
+                          length in between 7-16.*
+                          example (Robert#1234)"
+          />
+          <div class="validate"></div>
+        </div>
+        <!-- ====================  end password  ======================= -->
+
+        <div class="mb-3">
+          <div class="loading">Loading</div>
+          <div class="error-message"></div>
+          <div class="sent-message">Check your email for further process.</div>
+        </div>
+
+        <!-- <div><button type="submit">Submit</button></div> -->
+        <div class="text-center box">
+          <span>
+            <button type="submit">Submit</button>
+          </span>
+        </div>
+        <!-- <div class="giveMeLogin"></div> -->
+        <!-- <br> -->
+        <!-- <div id="getloginbutton"></div> -->
+      </form>
+
+      <br />
+    </div>
+  </div>
+</section>

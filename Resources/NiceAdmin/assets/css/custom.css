@@ -1,0 +1,36 @@
+.img-circle {
+  border-radius: 50%;
+  width: auto;
+  height: auto;
+  height: 35px;
+  width: 35px;
+  overflow: hidden;
+}
+
+.img-circle-big {
+  justify-content: center;
+  align-items: center;
+  vertical-align: middle;
+  border-radius: 50%;
+  width: auto;
+  height: auto;
+  overflow: hidden;
+  width: 117px;
+  height: 117px;
+}
+
+.img-circle.hor img {
+  position: absolute;
+  left: 50%;
+  width: auto;
+  height: 117px;
+  transform: translateX(-50%);
+}
+
+.img-circle.vert img {
+  position: absolute;
+  top: 50%;
+  width: 117px;
+  height: auto;
+  transform: translateY(-50%);
+}

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <title>PopUp box</title>
+
+    <link
+      rel="stylesheet"
+      href="Modal_jQuery/css/jquery.popup.css"
+      type="text/css"
+    />
+    <script
+      type="text/javascript"
+      src="Modal_jQuery/js/jquery-2.0.3.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="Modal_jQuery/js/jquery.popup.js"
+    ></script>
+    <script src="Modal_jQuery/image-picker/image-picker.js"></script>
+
+    <script type="text/javascript">
+      $(function () {
+        $(".js__p_start, .js__p_another_start").simplePopup();
+      });
+    </script>
+
+    <link
+      href="https://www.jqueryscript.net/css/jquerysctipttop.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="Modal_jQuery/image-picker/image-picker.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+  </head>
+  <body>
+    <div class="p_anch">
+      <a href="#" class="lal js__p_start" id="clickMe">
+        <button>Click me</button>
+      </a>
+    </div>
+
+    <!-- Starting the modal view code -->
+    <div
+      class="popup js__popup js__slide_top"
+      style="
+        overflow: hidden;
+        margin-top: -20px;
+        display: flex;
+        flex-direction: column;
+      "
+    >
+      <div
+        style="
+          position: sticky;
+          top: 0;
+          left: 0;
+          background-color: skyblue;
+          padding: 1px;
+        "
+      >
+        <span style="display: flex; flex-direction: row">
+          <h4 style="margin-left: 20px; font-weight: 600" id="nameHolder">
+            Photo not selected
+          </h4>
+          <!-- <h4 style="font-size: 18px; margin-left: 10px">></h4> -->
+
+          <a href="#" class="p_close js__p_close" style="right: 20px; top: 5px">
+            <span></span><span></span>
+          </a>
+        </span>
+      </div>
+
+      <!-- =================================================== -->
+      <!-- Image window and information window container -->
+      <div
+        id="img-info-container"
+        style="display: flex; flex-direction: row; overflow-y: scroll"
+      >
+        <!-- this is the image window -->
+        <div
+          id="imgWindow"
+          class="p_content"
+          style="
+            margin-top: -70px;
+            padding-right: 180px;
+            overflow-y: scroll;
+            overflow-x: hidden;
+          "
+        >
+          <!-- =================================== -->
+          <select class="image-picker">
+            <option id="imgHolder">example</option>
+          </select>
+          <!-- =================================== -->
+        </div>
+
+        <!-- this is the information window -->
+        <div
+          id="infoWindow"
+          style="
+            min-height: 800px;
+            width: 320px;
+            background-color: pink;
+            z-index: -1;
+            border-left: 1px solid black;
+            overflow: hidden;
+            padding: 5px;
+          "
+        >
+          <p style="font-size: 16px; font-weight: bold">Name :</p>
+          <p
+            id="info-name"
+            style="font-size: 16px; font-weight: 200; margin-top: -15px"
+          >
+            ...
+          </p>
+
+          <p style="font-size: 16px; font-weight: bold">File Type :</p>
+          <p
+            id="info-type"
+            style="font-size: 16px; font-weight: 200; margin-top: -15px"
+          >
+            ...
+          </p>
+
+          <p style="font-size: 16px; font-weight: bold">Size :</p>
+          <p
+            id="info-size"
+            style="font-size: 16px; font-weight: 200; margin-top: -15px"
+          >
+            ...
+          </p>
+
+          <p style="font-size: 16px; font-weight: bold">Width :</p>
+          <p
+            id="info-width"
+            style="font-size: 16px; font-weight: 200; margin-top: -15px"
+          >
+            ...
+          </p>
+
+          <p style="font-size: 16px; font-weight: bold">Height :</p>
+          <p
+            id="info-height"
+            style="font-size: 16px; font-weight: 200; margin-top: -15px"
+          >
+            ...
+          </p>
+
+          <p style="font-size: 16px; font-weight: bold">File URL :</p>
+          <p
+            id="info-url"
+            style="font-size: 16px; font-weight: 200; margin-top: -15px"
+          >
+            ...
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    // window.onbeforeunload = function () {
+    //   return "Refreshing might break the site..";
+    // };
+
+    function say() {
+      console.log("Saying......");
+    }
+
+    $(function () {
+      function uiFix() {
+        if ($(window).width() <= 700) {
+          console.log("changing flex");
+          $("#img-info-container").css({
+            display: "flex",
+            "flex-direction": "column",
+            "overflow-x": "hidden",
+            "overflow-y": "scroll",
+          });
+
+          $("#infoWindow").css({
+            "min-height": "150px",
+            width: "100%",
+            "background-color": "pink",
+            "z-index": 1,
+            "border-top": "1px solid black",
+            "overflow-x": "hidden",
+            "overflow-y": "scroll",
+            padding: "5px",
+          });
+
+          $("#imgWindow").css({
+            "margin-top": "-70px",
+            "padding-right": "0px",
+            "overflow-y": "scroll",
+            "overflow-x": "hidden",
+          });
+        }
+      }
+
+      uiFix();
+      $(window).resize(function () {
+        // This will execute whenever the window is resized
+        // $(window).height(); // New height
+        // $(window).width(); // New width
+        // console.log("Window Height " + $(window).height());
+        // console.log("Window width " + $(window).width());
+        uiFix();
+      });
+
+      let toRender = true;
+      $("#clickMe").on("click", function () {
+        if (toRender) {
+          toRender = false;
+          let myImgPlace = $("#imgHolder");
+          let namePlace = $("#nameHolder");
+
+          let xhr = new XMLHttpRequest();
+          xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4) {
+              if (xhr.status == 200) {
+                console.log(xhr.responseText);
+                let jsonData = JSON.parse(xhr.responseText);
+                let dataArr = jsonData.urls;
+                // console.log(dataArr);
+                dataArr.forEach(function (element, index) {
+                  console.log(element);
+                  let myImgClone = myImgPlace
+                    .clone()
+                    .attr("id", "img-c" + index)
+                    .attr("img-id", "img" + index)
+                    .attr("value", index)
+                    .attr("data-img-alt", "alt" + index)
+                    .attr("data-img-src", element.formats.thumbnail.url)
+                    .text(element.name);
+
+                  myImgPlace.before(myImgClone);
+                });
+
+                // myImgPlace.hide();
+                $(".image-picker").imagepicker({
+                  hide_select: true,
+                });
+
+                $(".image_picker_image").click(function (e) {
+                  console.log("Hi bro");
+                  let ar = this.getAttribute("alt");
+                  let index = ar.slice(3);
+                  // console.log(ar);
+                  // console.log(index);
+                  namePlace.text(dataArr[index].name);
+
+                  $("#info-name").text(dataArr[index].name);
+                  $("#info-url").text(dataArr[index].url);
+                  $("#info-type").text(dataArr[index].mime);
+                  $("#info-height").text(dataArr[index].height);
+                  $("#info-width").text(dataArr[index].width);
+                  $("#info-size").text(dataArr[index].size + "kb");
+
+                  // dataArr.forEach(function (element, index) {});
+                });
+              }
+            }
+          };
+
+          xhr.open("GET", "/img?mode=gallery");
+          xhr.send();
+
+          console.log("Script is loaded..");
+        }
+      });
+    });
+  </script>
+</html>

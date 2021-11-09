@@ -1,0 +1,86 @@
+<!-- This is the common users login page  -->
+
+<section id="contact" class="contact">
+  <div id="container" class="container">
+    <div id="signUpFormHere" class="row">
+      <div class="col-lg-7" data-aos="fade-right">
+        <div class="section-title">
+          <h2>Login</h2>
+          <p></p>
+        </div>
+      </div>
+
+      <form
+        action="/login"
+        method="POST"
+        role="form"
+        class="php-email-form mt-6 col-md-4 main"
+      >
+        <!-- User name field takes email.. -->
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control box"
+            name="email"
+            id="email"
+            placeholder="Your Email"
+            data-rule="email"
+            data-msg="Please enter a valid email.*"
+          />
+          <div class="validate"></div>
+        </div>
+
+        <!-- Password field  -->
+        <div class="form-group">
+          <input
+            type="password"
+            class="form-control box"
+            name="password"
+            id="password"
+            placeholder="Password"
+            data-rule="password"
+            data-msg="Password must contain one numeric, one special character and 
+                        length in between 7-16.*
+                        example (robert#1234)"
+          />
+          <div class="validate"></div>
+        </div>
+
+        <!-- To show error or success message -->
+        <div class="mb-3">
+          <div class="loading">Loading</div>
+          <div class="error-message" id="error-message"></div>
+          <div class="sent-message">Loging in...</div>
+        </div>
+
+        <!-- This is to show the error message just in case.. -->
+        <!-- This is facilitated by the ejs template engine -->
+        <% if(messages.error){ %>
+        <div
+          style="
+            color: #fff;
+            background: #ed3c0d;
+            text-align: left;
+            padding: 15px;
+            font-weight: 500;
+            overflow-y: scroll;
+            margin-top: 25px;
+            margin-bottom: 25px;
+          "
+        >
+          <%= messages.error %>
+        </div>
+        <% } %>
+
+        <!-- <div><button type="submit">Submit</button></div> -->
+        <div class="text-center box">
+          <span>
+            <button type="submit">Submit</button>
+          </span>
+        </div>
+      </form>
+
+      <br />
+    </div>
+  </div>
+</section>

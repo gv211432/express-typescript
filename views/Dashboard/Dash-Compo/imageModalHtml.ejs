@@ -1,0 +1,128 @@
+<div
+  class="popup js__popup js__slide_top"
+  style="
+    overflow: hidden;
+    margin-top: -20px;
+    display: flex;
+    flex-direction: column;
+    z-index: 1000000;
+    border-radius: 5px;
+  "
+>
+  <div
+    style="
+      position: sticky;
+      top: 0;
+      left: 0;
+      background-color: #810303;
+      padding: 2px;
+    "
+  >
+    <span style="display: flex; flex-direction: row">
+      <h4
+        style="
+          margin-left: 20px;
+          font-weight: 600;
+          color: white;
+          padding-top: 5px;
+        "
+        id="nameHolder"
+      >
+        Photo not selected
+      </h4>
+      <!-- <h4 style="font-size: 18px; margin-left: 10px">></h4> -->
+
+      <a href="#" class="p_close js__p_close" style="right: 20px; top: 5px">
+        <span></span><span></span>
+      </a>
+    </span>
+  </div>
+
+  <!-- =================================================== -->
+  <!-- Image window and information window container -->
+  <div
+    id="img-info-container"
+    style="display: flex; flex-direction: row; overflow-y: scroll"
+  >
+    <!-- this is the image window -->
+    <div
+      id="imgWindow"
+      class="p_content"
+      style="
+        margin-top: -70px;
+        padding-right: 180px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        background-color: #fff6f6;
+      "
+    >
+      <!-- =================================== -->
+      <select class="image-picker">
+        <option id="imgHolder">example</option>
+      </select>
+      <!-- =================================== -->
+    </div>
+
+    <!-- this is the information window -->
+    <div
+      id="infoWindow"
+      style="
+        min-height: 800px;
+        width: 320px;
+        z-index: -1;
+        background-color: #fff6f6;
+        border-left: 1px solid #810303;
+        overflow: hidden;
+        padding: 5px;
+      "
+    >
+      <p style="font-size: 16px; font-weight: bold">Name :</p>
+      <p
+        id="info-name"
+        style="font-size: 16px; font-weight: 200; margin-top: -15px"
+      >
+        ...
+      </p>
+
+      <p style="font-size: 16px; font-weight: bold">File Type :</p>
+      <p
+        id="info-type"
+        style="font-size: 16px; font-weight: 200; margin-top: -15px"
+      >
+        ...
+      </p>
+
+      <p style="font-size: 16px; font-weight: bold">Size :</p>
+      <p
+        id="info-size"
+        style="font-size: 16px; font-weight: 200; margin-top: -15px"
+      >
+        ...
+      </p>
+
+      <p style="font-size: 16px; font-weight: bold">Width :</p>
+      <p
+        id="info-width"
+        style="font-size: 16px; font-weight: 200; margin-top: -15px"
+      >
+        ...
+      </p>
+
+      <p style="font-size: 16px; font-weight: bold">Height :</p>
+      <p
+        id="info-height"
+        style="font-size: 16px; font-weight: 200; margin-top: -15px"
+      >
+        ...
+      </p>
+
+      <p style="font-size: 16px; font-weight: bold">File URL :</p>
+      <p
+        id="info-url"
+        style="font-size: 16px; font-weight: 200; margin-top: -15px"
+      >
+        ...
+      </p>
+    </div>
+  </div>
+</div>

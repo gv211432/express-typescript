@@ -1,0 +1,9 @@
+.dashboard-nav {
+  background-color: #810303;
+  color: white;
+  font-weight: 550;
+}
+.dashboard-nav:hover {
+  background-color: #e22121;
+  color: white;
+}

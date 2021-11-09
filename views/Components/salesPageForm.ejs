@@ -1,0 +1,180 @@
+<!-- This form is for sellers registration -->
+<!-- this contains field firstName lastName phone email username password -->
+
+<section id="contact" class="contact">
+  <div id="container" class="container">
+    <div id="signUpFormHere" class="row">
+      <div class="col-lg-7" data-aos="fade-right">
+        <div class="section-title">
+          <h2>New Connection</h2>
+          <p></p>
+        </div>
+      </div>
+
+      <form
+        action="/sales-page-handler"
+        method="post"
+        role="form"
+        class="php-email-form php2-email-form mt-6 col-md-4 main"
+      >
+        <div class="form-group">
+          <!-- first Name input field -->
+          <input
+            type="text"
+            name="name"
+            class="form-control box"
+            id="name"
+            placeholder="Name"
+            data-rule="minlen:2"
+            data-msg="Please enter at least 2 characters.*"
+          />
+          <div class="validate"></div>
+        </div>
+
+        <!-- Phone input field -->
+        <div class="form-group">
+          <input
+            type="phone"
+            class="form-control box"
+            name="phone"
+            id="phone"
+            placeholder="Contact Phone no."
+            data-rule="phone"
+            data-msg="Phone number must be of 10 digits.*"
+          />
+          <div class="validate"></div>
+        </div>
+
+        <!-- Email input field -->
+        <div class="form-group">
+          <input
+            type="email"
+            class="form-control box"
+            name="email"
+            id="email"
+            placeholder="contact@email.com"
+            data-rule="email"
+            data-msg="Please enter a valid email.*"
+          />
+          <div class="validate"></div>
+        </div>
+
+        <div class="form-group">
+          <span>
+            <input
+              type="number"
+              class="form-control box"
+              name="qty"
+              id="qty"
+              placeholder="Quantity of device"
+              data-rule="minlen:1"
+              data-msg="This field can not be empty.."
+            />
+            <div class="validate"></div>
+          </span>
+        </div>
+
+        <div class="form-group">
+          <span>
+            <input
+              type="number"
+              class="form-control box"
+              name="soldAt"
+              id="soldAt"
+              placeholder="Selling Price"
+              data-rule="minlen:1"
+              data-msg="This field can not be empty.."
+            />
+            <div class="validate"></div>
+          </span>
+        </div>
+
+        <div class="form-group">
+          <select
+            name="tax"
+            id="tax"
+            class="form-control box"
+            style="outline: none !important"
+          >
+            <option value="0">No tax</option>
+            <option value="18" selected>Standard Gst</option>
+          </select>
+          <div class="validate"></div>
+        </div>
+
+        <div class="form-group">
+          <!-- first Name input field -->
+          <input
+            type="text"
+            name="addressLine1"
+            class="form-control box"
+            id="addressLine1"
+            placeholder="Address Line 1"
+            data-rule="minlen:2"
+            data-msg="Please enter at least 2 characters.*"
+          />
+          <div class="validate"></div>
+        </div>
+
+        <div class="form-group">
+          <!-- first Name input field -->
+          <input
+            type="text"
+            name="addressLine2"
+            class="form-control box"
+            id="addressLine2"
+            placeholder="Address Line2"
+            data-msg="Please enter at least 2 characters.*"
+          />
+          <div class="validate"></div>
+        </div>
+
+        <div class="form-group">
+          <!-- first Name input field -->
+          <input
+            type="text"
+            name="addressLine3"
+            class="form-control box"
+            id="addressLine3"
+            placeholder="Address Line 3"
+            data-msg="Please enter at least 2 characters.*"
+          />
+          <div class="validate"></div>
+        </div>
+
+        <!-- Last name inut field -->
+        <div class="form-group">
+          <!-- Name input field -->
+          <input
+            type="number"
+            name="pincode"
+            class="form-control box"
+            id="pincode"
+            placeholder="Pincode"
+            data-rule="minlen:6"
+          />
+          <!-- data-msg="Please enter at least 4 characters.*" -->
+          <div class="validate"></div>
+        </div>
+
+        <div class="mb-3">
+          <div class="loading">Loading</div>
+          <div class="error-message"></div>
+          <div class="sent-message">Check your email for further process.</div>
+        </div>
+
+        <!-- <div><button type="submit">Submit</button></div> -->
+        <div class="text-center box">
+          <span>
+            <button type="submit">Submit</button>
+          </span>
+        </div>
+        <!-- <div class="giveMeLogin"></div> -->
+        <!-- <br> -->
+        <!-- <div id="getloginbutton"></div> -->
+      </form>
+
+      <br />
+    </div>
+  </div>
+</section>

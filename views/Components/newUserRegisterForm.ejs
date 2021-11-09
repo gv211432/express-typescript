@@ -1,0 +1,79 @@
+<!-- This is the common users login page  -->
+
+<section id="contact" class="contact">
+  <div id="container" class="container">
+    <div id="signUpFormHere" class="row">
+      <div class="col-lg-7" data-aos="fade-right">
+        <div class="section-title">
+          <h2>New connection validation</h2>
+          <p>
+            Enter the order number and email id present on the products bill.
+          </p>
+        </div>
+      </div>
+
+      <form
+        action="/new-user"
+        method="POST"
+        role="form"
+        class="php-email-form mt-6 col-md-4 main"
+      >
+        <!-- Password field  -->
+        <div class="form-group">
+          <input
+            type="number"
+            class="form-control box"
+            name="order"
+            id="order"
+            placeholder="Your order number"
+            data-rule="number"
+            data-msg="This filed can be empty."
+          />
+          <div class="validate"></div>
+        </div>
+
+        <!-- User name field takes email.. -->
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control box"
+            name="email"
+            id="email"
+            placeholder="Your Email"
+            data-rule="email"
+            data-msg="Please enter a valid email.*"
+          />
+          <div class="validate"></div>
+        </div>
+
+        <!-- This is to show the error message just in case.. -->
+        <!-- This is facilitated by the ejs template engine -->
+        <% if(messages.error){ %>
+        <div
+          style="
+            color: #fff;
+            background: #ed3c0d;
+            text-align: left;
+            padding: 15px;
+            font-weight: 500;
+            overflow-y: scroll;
+            margin-top: 25px;
+            margin-bottom: 25px;
+          "
+        >
+          <%= messages.error %>
+        </div>
+        <% } %>
+
+        <!-- <div><button type="submit">Submit</button></div> -->
+        <div class="text-center box">
+          <span>
+            <button type="submit">Submit</button>
+          </span>
+        </div>
+      </form>
+
+      <br />
+    </div>
+  </div>
+</section>

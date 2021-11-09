@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- ===== Head tag ======= -->
+    <!-- This contains many css jquery bootstrap files -->
+    <%- include("../Components/headTag.ejs") %>
+    <!-- ===== End Head tag ======= -->
+  </head>
+
+  <body>
+    <!-- ======= Header ======= -->
+    <!-- This basically contains the bar navigator at the top.. -->
+    <%- include("../Components/header.ejs") %>
+    <!-- End Header -->
+
+    <!-- <div class="col-md-3"> -->
+    <!-- <div id="toHideajaxForm"> -->
+    <br /><br /><br />
+    <br />
+    <!-- ======= loginPageForm ======= -->
+    <!-- This basically contains the bar navigator at the top.. -->
+    <%- include("../Components/loginPageForm.ejs") %>
+    <!-- End loginPageForm -->
+
+    <script>
+      const urlParams = new URLSearchParams(window.location.search);
+      const info = urlParams.get("info");
+
+      if (info) {
+        const errorMessage = document.getElementById("error-message");
+        errorMessage.innerText = info;
+        errorMessage.style.display = "block";
+      }
+    </script>
+
+    <!-- Footer scripts -->
+    <!-- Contains all js and more for website -->
+    <%- include("../Components/footerScripts.ejs") %>
+    <!-- End Footer scripts  -->
+  </body>
+</html>

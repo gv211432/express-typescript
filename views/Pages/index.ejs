@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- ===== Head tag ======= -->
+    <!-- This contains many css jquery bootstrap files -->
+    <%- include("../Components/headTag.ejs") %>
+    <!-- ===== End Head tag ======= -->
+  </head>
+
+  <body>
+    <!-- ======= Header ======= -->
+    <!-- This basically contains the bar navigator at the top.. -->
+    <%- include("../Components/header.ejs") %>
+    <!-- End Header -->
+
+    <!-- ======= Hero Section ======= -->
+    <%- include("../Components/heroSection.ejs") %>
+
+    <!-- End Hero -->
+
+    <!-- ===============Signup form goimg to be here============== -->
+    <div id="signupformAjax"></div>
+    <!-- ===============Signup form goimg to be here============== -->
+
+    <main id="main">
+      <!-- ======= Clients Section ======= -->
+
+      <%- include("../Components/clientSection.ejs") %>
+
+      <!-- End Clients Section -->
+
+      <!-- ======= About Section ======= -->
+      <%- include("../Components/aboutSection.ejs") %>
+
+      <!-- End About Section -->
+
+      <!-- ======= Counts Section ======= -->
+      <%- include("../Components/countSection.ejs") %>
+
+      <!-- End Counts Section -->
+
+      <!-- ======= Why Us Section ======= -->
+      <%- include('../Components/whyUsSection.ejs') %>
+
+      <!-- End Why Us Section -->
+
+      <!-- ======= Cta Section ======= -->
+      <section id="cta" class="cta">
+        <div class="container">
+          <div class="text-center" data-aos="zoom-in">
+            <h3>Call To Action</h3>
+            <p>
+              Duis aute irure dolor in reprehenderit in voluptate velit esse
+              cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+              cupidatat non proident, sunt in culpa qui officia deserunt mollit
+              anim id est laborum.
+            </p>
+            <a class="cta-btn" href="#">Call To Action</a>
+          </div>
+        </div>
+      </section>
+      <!-- End Cta Section -->
+
+      <!-- ======= Services Section ======= -->
+      <%- include('../Components/serviceSection.ejs') %>
+      <!-- End Services Section -->
+
+      <!-- ======= Portfolio Section ======= -->
+      <%- include('../Components/portfolioSection.ejs') %>
+      <!-- End Portfolio Section -->
+
+      <!-- ======= Testimonials Section ======= -->
+      <%- include('../Components/testimonialSection.ejs') %>
+      <!-- End Testimonials Section -->
+
+      <!-- ======= Team Section ======= -->
+      <%- include('../Components/teamSection.ejs') %>
+      <!-- End Team Section -->
+
+      <!-- ======= Contact Section ======= -->
+      <%- include('../Components/contactSection.ejs') %>
+      <!-- End Contact Section -->
+    </main>
+    <!-- End #main -->
+
+    <!-- ======= Footer ======= -->
+    <!-- Contiains all the footer elements and components -->
+    <%- include('../Components/footer.ejs') %>
+    <!-- End Footer -->
+
+    <!-- Footer scripts -->
+    <!-- Contains all js and more for website -->
+    <%- include("../Components/footerScripts.ejs") %>
+    <!-- End Footer scripts  -->
+  </body>
+</html>

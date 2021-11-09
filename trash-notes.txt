@@ -1,0 +1,8 @@
+    <!-- ========= Image modal code ========== -->
+    <%- include("../Dash-Compo/imageModalHtml.ejs") %>
+    <!-- ==== Ending Image modal code ======== -->
+
+
+    <!-- Image modal link and scripts head tag -->
+    <%- include("../Dash-Compo/imageModalHeadTag.ejs") %>
+    <!-- Ending image head tags -->

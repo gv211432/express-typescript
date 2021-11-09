@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    :root {
+        --navbar-bg-color: hsl(0, 0%, 15%);
+        --navbar-text-color: hsl(0, 0%, 85%);
+        --navbar-text-color-focus: white;
+        --navbar-bg-contrast: hsl(0, 0%, 25%);
+    }
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        height: 100vh;
+        font-family: Arial, Helvetica, sans-serif;
+        line-height: 1.6;
+        background-color: rgb(30, 43, 54);
+        overflow-y: auto;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    /* html,
+    body {
+        height: 100%;
+    }
+
+    body {
+        display: grid;
+        place-items: center;
+        background: #dde1e7;
+        text-align: center;
+    } */
+
+    .clock {
+        position: relative;
+        display: flex;
+        margin-left: auto;
+        margin-right: auto;
+        align-items: center;
+        justify-content: center;
+        background: #dde1e7;
+        height: 250px;
+        width: 250px;
+        border-radius: 50%;
+        box-shadow: -3px -3px 7px #f8f8f854,
+            3px 3px 7px rgba(0, 0, 0, 0.356);
+    }
+
+    .clock:before {
+        position: absolute;
+        content: '';
+        height: 220px;
+        width: 220px;
+        background: #dde1e7;
+        border-radius: 50%;
+        box-shadow: inset -3px -3px 7px #ffffff73,
+            inset 3px 3px 5px rgba(94, 104, 121, 0.288);
+    }
+
+    .clock:after {
+        position: absolute;
+        content: '';
+        height: 120px;
+        width: 120px;
+        background: #dde1e7;
+        border-radius: 50%;
+        box-shadow: -1px -1px 5px #ffffff73,
+            1px 1px 3px rgba(94, 104, 121, 0.288);
+    }
+
+    .clock .center-nut {
+        height: 15px;
+        width: 15px;
+        background: #404040;
+        border-radius: 50%;
+        z-index: 2;
+        position: absolute;
+    }
+
+    .clock .center-nut2 {
+        height: 9px;
+        width: 9px;
+        background: #3498db;
+        border-radius: 50%;
+        z-index: 15;
+        position: absolute;
+    }
+
+    .indicators div {
+        position: absolute;
+        width: 2px;
+        height: 5px;
+        background: #404040;
+    }
+
+    .indicators div:nth-child(1) {
+        transform: rotate(30deg) translateY(-100px);
+    }
+
+    .indicators div:nth-child(2) {
+        transform: rotate(60deg) translateY(-100px);
+    }
+
+    .indicators div:nth-child(3) {
+        background: #3498db;
+        transform: rotate(90deg) translateY(-100px);
+    }
+
+    .indicators div:nth-child(4) {
+        transform: rotate(120deg) translateY(-100px);
+    }
+
+    .indicators div:nth-child(5) {
+        transform: rotate(150deg) translateY(-100px);
+    }
+
+    .indicators div:nth-child(6) {
+        background: #3498db;
+        transform: rotate(180deg) translateY(-100px);
+    }
+
+    .indicators div:nth-child(7) {
+        transform: rotate(210deg) translateY(-100px);
+    }
+
+    .indicators div:nth-child(8) {
+        transform: rotate(240deg) translateY(-100px);
+    }
+
+    .indicators div:nth-child(9) {
+        background: #3498db;
+        transform: rotate(270deg) translateY(-100px);
+    }
+
+    .indicators div:nth-child(10) {
+        transform: rotate(300deg) translateY(-100px);
+    }
+
+    .indicators div:nth-child(11) {
+        transform: rotate(330deg) translateY(-100px);
+    }
+
+    .indicators div:nth-child(12) {
+        background: #3498db;
+        transform: rotate(360deg) translateY(-100px);
+    }
+
+    .sec-hand,
+    .min-hand,
+    .hr-hand {
+        position: absolute;
+    }
+
+    .sec-hand,
+    .sec {
+        height: 180px;
+        width: 180px;
+        z-index: 6;
+    }
+
+    .min-hand,
+    .min {
+        height: 140px;
+        width: 140px;
+        z-index: 5;
+    }
+
+    .hr-hand,
+    .hr {
+        height: 110px;
+        width: 110px;
+        z-index: 4;
+    }
+
+    .sec,
+    .min,
+    .hr {
+        display: flex;
+        justify-content: center;
+        position: absolute;
+    }
+
+    .sec:before {
+        position: absolute;
+        content: '';
+        height: 110px;
+        width: 3px;
+        background: #3498db;
+    }
+
+    .sec:after {
+        position: absolute;
+        content: '';
+        height: 35px;
+        width: 7px;
+        background: #3498db;
+        top: 105px;
+        border-radius: 5px;
+    }
+
+    .min:before {
+        position: absolute;
+        content: '';
+        width: 1px;
+        top: -15px;
+        border-left: 3px solid transparent;
+        border-right: 3px solid transparent;
+        border-bottom: 60px solid #e95949;
+    }
+
+    .min:after {
+        position: absolute;
+        content: '';
+        width: 3px;
+        top: 40px;
+        border-left: 2px solid transparent;
+        border-right: 2px solid transparent;
+        border-top: 30px solid #e95949;
+    }
+
+    .hr:before {
+        position: absolute;
+        content: '';
+        width: 1px;
+        border-left: 3px solid transparent;
+        border-right: 3px solid transparent;
+        border-bottom: 35px solid #303030;
+    }
+
+    .hr:after {
+        position: absolute;
+        content: '';
+        width: 3px;
+        top: 34px;
+        border-left: 2px solid transparent;
+        border-right: 2px solid transparent;
+        border-top: 25px solid #303030;
+    }
+
+
+    .container {
+        max-width: 1000px;
+        padding-left: 1.4rem;
+        padding-right: 1.4rem;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #navbar {
+        --navbar-height: 64px;
+        position: fixed;
+        height: var(--navbar-height);
+        background-color: var(--navbar-bg-color);
+        left: 0;
+        right: 0;
+        /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+         */
+        box-shadow: 4px 4px 10px #000000b0,
+            -0.9px -0.9px 10px #daf3fd69;
+
+    }
+
+
+    .navbar-container {
+        display: flex;
+        justify-content: space-between;
+        height: 100%;
+        align-items: center;
+    }
+
+    .navbar-item {
+        margin: 0.4em;
+        width: 100%;
+    }
+
+    .home-link,
+    .navbar-link {
+        color: var(--navbar-text-color);
+        transition: color 0.2s ease-in-out;
+        text-decoration: none;
+        display: flex;
+        font-weight: 400;
+        align-items: center;
+        transition: background-color 0.2s ease-in-out,
+            color 0.2s ease-in-out;
+    }
+
+    .home-link:focus,
+    .home-link:hover {
+        color: var(--navbar-text-color-focus);
+    }
+
+    .navbar-link {
+        justify-content: center;
+        width: 100%;
+        padding: 0.4em 0.8em;
+        border-radius: 5px;
+    }
+
+    .navbar-link:focus,
+    .navbar-link:hover {
+        color: var(--navbar-text-color-focus);
+        background-color: var(--navbar-bg-contrast);
+    }
+
+    .navbar-logo {
+        background-color: var(--navbar-text-color-focus);
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        margin-right: 0.5em;
+        box-shadow: 4px 4px 10px #000000b0,
+            -0.9px -0.9px 10px #daf3fd69;
+    }
+
+    .navbar-toggle {
+        cursor: pointer;
+        border: none;
+        background-color: transparent;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        box-shadow: 4px 4px 10px #000000b0,
+            -0.9px -0.9px 10px #daf3fd69;
+    }
+
+    .icon-bar {
+        display: block;
+        width: 25px;
+        height: 4px;
+        margin: 2px;
+        transition: background-color 0.2s ease-in-out,
+            transform 0.2s ease-in-out,
+            opacity 0.2s ease-in-out;
+        background-color: var(--navbar-text-color);
+    }
+
+    .navbar-toggle:focus .icon-bar,
+    .navbar-toggle:hover .icon-bar {
+        background-color: var(--navbar-text-color-focus);
+    }
+
+    #navbar.opened .navbar-toggle .icon-bar:first-child,
+    #navbar.opened .navbar-toggle .icon-bar:last-child {
+        position: absolute;
+        margin: 0;
+        width: 30px;
+    }
+
+    #navbar.opened .navbar-toggle .icon-bar:first-child {
+        transform: rotate(45deg);
+    }
+
+    #navbar.opened .navbar-toggle .icon-bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    #navbar.opened .navbar-toggle .icon-bar:last-child {
+        transform: rotate(-45deg);
+    }
+
+    .navbar-menu {
+        position: fixed;
+        top: var(--navbar-height);
+        bottom: 0;
+        transition: opacity 0.2s ease-in-out,
+            visibility 0.2s ease-in-out;
+        opacity: 0;
+        visibility: hidden;
+        left: 0;
+        right: 0;
+    }
+
+    #navbar.opened .navbar-menu {
+        background-color: rgba(0, 0, 0, 0.4);
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .navbar-links {
+        list-style-type: none;
+        max-height: 0;
+        overflow: hidden;
+        position: absolute;
+        background-color: var(--navbar-bg-color);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        left: 0;
+        right: 0;
+        margin: 1.4rem;
+        border-radius: 5px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    }
+
+    #navbar.opened .navbar-links {
+        padding: 1em;
+        max-height: none;
+    }
+
+    @media screen and (min-width: 700px) {
+        .navbar-toggle {
+            display: none;
+        }
+
+        #navbar .navbar-menu,
+        #navbar.opened .navbar-menu {
+            visibility: visible;
+            opacity: 1;
+            position: static;
+            display: block;
+            height: 100%;
+        }
+
+        #navbar .navbar-links,
+        #navbar.opened .navbar-links {
+            margin: 0;
+            padding: 0;
+            box-shadow: none;
+            position: static;
+            flex-direction: row;
+            list-style-type: none;
+            max-height: max-content;
+            width: 100%;
+            height: 100%;
+        }
+
+        #navbar .navbar-link:last-child {
+            margin-right: 0;
+        }
+    }
+
+    button.on,
+    button.off {
+        display: block;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 60px;
+        font-weight: bold;
+        padding: 0 100px;
+        background: rgb(156, 138, 136);
+        border: none;
+        align-items: center;
+        /* background: linear-gradient(-45deg, rgba(0, 0, 0, 0.22), rgba(255, 255, 255, 0.25)); */
+        border-radius: 50px;
+        background: linear-gradient(145deg, #454546, #f0f0f0);
+        box-shadow: 4px 4px 10px #000000b0,
+            -0.9px -0.9px 10px #daf3fd69;
+
+    }
+
+    button.off {
+        background: rgb(255, 191, 184);
+    }
+
+    button.on {
+        background: rgb(213, 255, 174);
+    }
+
+    button.off:hover {
+        background: rgb(255, 165, 162);
+
+    }
+
+    button.on:hover {
+
+
+        background: rgb(186, 252, 132);
+    }
+
+    p {
+        margin-top: auto;
+    }
+
+    .slidecontainer {
+        width: 100%;
+
+    }
+
+    .slider {
+        display: block;
+        margin-right: auto;
+        margin-left: auto;
+        -webkit-appearance: none;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        width: 390px;
+        height: 25px;
+        border-radius: 50px;
+        background: #ececec;
+        outline: none;
+        opacity: 1;
+        -webkit-transition: .2s;
+        transition: opacity .2s;
+        box-shadow: 4px 4px 10px #000000b0,
+            -0.9px -0.9px 10px #daf3fd69;
+    }
+
+    .slider:hover {
+        opacity: 1;
+    }
+
+    .slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: rgb(213, 255, 174);
+        cursor: pointer;
+        box-shadow: 4px 4px 10px #000000b0,
+            -0.9px -0.9px 10px #daf3fd69;
+    }
+
+    .slider::-moz-range-thumb {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: rgb(213, 255, 174);
+        cursor: pointer;
+        box-shadow: 4px 4px 10px #000000b0,
+            -0.9px -0.9px 10px #daf3fd69;
+    }
+</style>
+
+<body onload="getStatusOnce()">
+
+    <header id="navbar" style="z-index: 100;">
+        <nav class="navbar-container container">
+            <a href="/" class="home-link">
+                <div class="navbar-logo">
+                    <h1 style="margin-left: 7px; margin-top: -6px; color: rgb(0, 128, 145); font-size: 38px;">V</h1>
+                </div>
+                <h3> Vishwakarma Home Automation</h3>
+
+            </a>
+            <button type="button" class="navbar-toggle" aria-label="Open navigation menu">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <div class="navbar-menu">
+                <ul class="navbar-links">
+                    <li class="navbar-item"><a class="navbar-link" href="/about">About</a></li>
+                    <li class="navbar-item"><a class="navbar-link" href="/blog">Blog</a></li>
+                    <li class="navbar-item"><a class="navbar-link" href="/careers">Careers</a></li>
+                    <li class="navbar-item"><a class="navbar-link" href="/contact">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <br><br><br><br>
+
+    <div class="clock">
+        <div class="center-nut">
+        </div>
+        <div class="center-nut2">
+        </div>
+        <div class="indicators">
+            <div>
+            </div>
+            <div>
+            </div>
+            <div>
+            </div>
+            <div>
+            </div>
+            <div>
+            </div>
+            <div>
+            </div>
+            <div>
+            </div>
+            <div>
+            </div>
+            <div>
+            </div>
+            <div>
+            </div>
+            <div>
+            </div>
+            <div>
+            </div>
+        </div>
+        <div class="sec-hand">
+            <div class="sec">
+            </div>
+        </div>
+        <div class="min-hand">
+            <div class="min">
+            </div>
+        </div>
+        <div class="hr-hand">
+            <div class="hr">
+            </div>
+        </div>
+    </div>
+
+    <p1><br><br></p1>
+    <br><br><br>
+
+
+    <script>
+        const navbar = document.getElementById("navbar");
+        const navbarToggle = navbar.querySelector(".navbar-toggle");
+
+        function openMobileNavbar() {
+            navbar.classList.add("opened");
+            navbarToggle.setAttribute("aria-label", "Close navigation menu.");
+        }
+
+        function closeMobileNavbar() {
+            navbar.classList.remove("opened");
+            navbarToggle.setAttribute("aria-label", "Open navigation menu.");
+        }
+
+        navbarToggle.addEventListener("click", () => {
+            if (navbar.classList.contains("opened")) {
+                closeMobileNavbar();
+            } else {
+                openMobileNavbar();
+            }
+        });
+
+        const navbarMenu = navbar.querySelector(".navbar-menu");
+        const navbarLinksContainer = navbar.querySelector(".navbar-links");
+
+        navbarLinksContainer.addEventListener("click", (clickEvent) => {
+            clickEvent.stopPropagation();
+        });
+
+        navbarMenu.addEventListener("click", closeMobileNavbar);
+
+    </script>
+    <script>
+        var payloadRepeat = "";
+        var payloadOnce = "";
+        var proceeder = 0;
+        var proceederCopy = 0;
+
+        doTheJob = (mark, hyperStatus) => {
+            var xhr = new XMLHttpRequest;
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState == 4) {
+                    if (xhr.status == 200) {
+                        payloadRepeat = xhr.responseText;
+                        getButtonStatus(payloadRepeat);
+                    }
+                }
+            }
+            xhr.open('GET', '/switching/<%=sendToken%>/' + mark + '/' + hyperStatus, true);
+            xhr.send();
+        }
+
+
+        var getStatusOnce = function () {
+            var xhr = new XMLHttpRequest;
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState == 4) {
+                    if (xhr.status == 200) {
+                        var payloadOnce = xhr.responseText;
+
+                        while (payloadOnce[proceederCopy]) {
+
+                            if (payloadOnce[proceederCopy] == 9) {
+                                proceeder = proceederCopy;
+                                proceeder++;
+                                while (payloadOnce[proceeder] == 1 || payloadOnce[proceeder] == 0) {
+                                    if (payloadOnce[proceeder] == 1) {
+
+                                        // 1. Create the button
+                                        var button = document.createElement("button");
+                                        button.innerHTML = "ON*";
+                                        button.classList.add('on');
+                                        // button.classList.add("btn" + proceeder);
+                                        button.setAttribute("id", "btn" + proceeder);
+                                        button.setAttribute("marker", "button" + proceeder);
+
+                                        var br = document.createElement("br");
+
+                                        var body = document.getElementsByTagName("p1")[0];
+                                        body.appendChild(button);
+                                        body.appendChild(br);
+
+                                        button.addEventListener("click", function () {
+                                            //let d = document.getElementsByClassName('1');
+                                            let mark = this.getAttribute("marker");
+                                            let foundClass = this.getAttribute('class');
+                                            let clsss = "";
+                                            if (foundClass[1] == "n") {
+                                                clsss = "off";
+                                                // this.classList.remove(clsss);
+                                                // this.classList.add("off");
+                                            } else if (foundClass[1] == "f") {
+                                                clsss = "on";
+                                                // this.classList.remove(clsss);
+                                                // this.classList.add("on");
+                                            }
+                                            console.log(mark);
+                                            console.log(clsss);
+                                            doTheJob(mark, clsss);
+                                        });
+
+                                    }
+                                    else if (payloadOnce[proceeder] == 0) {
+
+                                        // 1. Create the button
+                                        var button = document.createElement("button");
+                                        button.innerHTML = "OFF";
+                                        button.classList.add('off');
+                                        // button.classList.add("btn" + proceeder);
+                                        button.setAttribute("id", "btn" + proceeder);
+                                        button.setAttribute("marker", "button" + proceeder);
+
+                                        var br = document.createElement("br");
+
+                                        // 2. Append somewhere
+                                        var body = document.getElementsByTagName("p1")[0];
+                                        body.appendChild(button);
+                                        body.appendChild(br);
+
+                                        // 3. Add event handler
+                                        button.addEventListener("click", function () {
+                                            // alert("did something");
+                                            let mark = this.getAttribute("marker");
+                                            let foundClass = this.getAttribute('class');
+                                            let clsss = "";
+                                            if (foundClass[1] == "n") {
+                                                clsss = "off";
+                                                // this.classList.remove(clsss);
+                                                // this.classList.add("off");
+                                            } else if (foundClass[1] == "f") {
+                                                clsss = "on";
+                                                // this.classList.remove(clsss);
+                                                // this.classList.add("on");
+                                            }
+                                            console.log(mark);
+                                            doTheJob(mark, clsss);
+                                        });
+
+                                    }
+                                    proceeder++;
+                                }
+                            }
+                            else if (payloadOnce[proceederCopy] == "8") {
+                                let myAdder = 0;
+                                let myFanVar = [0, 0, 0];
+                                console.log('hi dude')
+
+                                proceeder = proceederCopy;
+                                proceeder++;
+                                while (payloadOnce[proceeder] == 1 || payloadOnce[proceeder] == 0) {
+                                    if (payloadOnce[proceeder] == 1) {
+                                        myFanVar[myAdder] = "1";
+                                        myAdder++;
+                                    } else if (payloadOnce[proceeder] == 0) {
+                                        myFanVar[myAdder] = "0";
+                                        myAdder++;
+                                    }
+                                    proceeder++;
+
+                                }
+
+                                myAdder = 0;
+                                if (myFanVar[0] == "1") {
+
+                                    var slider = document.createElement("input");
+                                    slider.classList.add('slider');
+                                    slider.classList.add(proceeder);
+                                    slider.setAttribute("type", "range");
+                                    slider.setAttribute("min", "1");
+                                    slider.setAttribute("max", "5");
+                                    slider.setAttribute("value", "5");
+                                    slider.setAttribute("id", "range" + proceeder);
+
+                                    var br = document.createElement("br");
+
+                                    var body = document.getElementsByTagName("p1")[0];
+                                    body.appendChild(slider);
+                                    body.appendChild(br);
+
+                                    slider.addEventListener("click", function () {
+                                        // alert("did something");
+
+                                    });
+
+                                    myFanVar = [0, 0, 0];
+
+                                } else if (myFanVar[1] == "1" && myFanVar[2] == "1") {
+                                    var slider = document.createElement("input");
+                                    slider.classList.add('slider');
+                                    slider.classList.add(proceeder);
+                                    slider.setAttribute("type", "range");
+                                    slider.setAttribute("min", "1");
+                                    slider.setAttribute("max", "5");
+                                    slider.setAttribute("value", "4");
+                                    slider.setAttribute("id", "range" + proceeder);
+
+
+                                    var br = document.createElement("br");
+
+                                    var body = document.getElementsByTagName("p1")[0];
+                                    body.appendChild(slider);
+                                    body.appendChild(br);
+
+                                    slider.addEventListener("click", function () {
+                                        // let d = document.getElementsByClassName('1');
+                                        // alert("did something");
+
+                                    });
+
+                                    myFanVar = [0, 0, 0];
+
+                                } else if (myFanVar[1] == "1") {
+                                    var slider = document.createElement("input");
+                                    slider.classList.add('slider');
+                                    slider.classList.add(proceeder);
+                                    slider.setAttribute("type", "range");
+                                    slider.setAttribute("min", "1");
+                                    slider.setAttribute("max", "5");
+                                    slider.setAttribute("value", "3");
+                                    slider.setAttribute("id", "range" + proceeder);
+
+
+                                    var br = document.createElement("br");
+
+                                    var body = document.getElementsByTagName("p1")[0];
+                                    body.appendChild(slider);
+                                    body.appendChild(br);
+
+                                    slider.addEventListener("click", function () {
+                                        // let d = document.getElementsByClassName('1');
+                                        // alert("did something");
+
+                                    });
+                                    myFanVar = [0, 0, 0];
+
+                                } else if (myFanVar[2] == "1") {
+                                    var slider = document.createElement("input");
+                                    slider.classList.add('slider');
+                                    slider.classList.add(proceeder);
+                                    slider.setAttribute("type", "range");
+                                    slider.setAttribute("min", "1");
+                                    slider.setAttribute("max", "5");
+                                    slider.setAttribute("value", "2");
+                                    slider.setAttribute("id", "range" + proceeder);
+
+
+                                    var br = document.createElement("br");
+
+                                    var body = document.getElementsByTagName("p1")[0];
+                                    body.appendChild(slider);
+                                    body.appendChild(br);
+
+                                    slider.addEventListener("click", function () {
+                                        // let d = document.getElementsByClassName('1');
+                                        // alert("did something");
+
+                                    });
+                                    myFanVar = [0, 0, 0];
+
+                                } else if (myFanVar[0] == "0" && myFanVar[1] == "0" && myFanVar[2] == "0") {
+                                    var slider = document.createElement("input");
+                                    slider.classList.add('slider');
+                                    slider.classList.add(proceeder);
+                                    slider.setAttribute("type", "range");
+                                    slider.setAttribute("min", "1");
+                                    slider.setAttribute("max", "5");
+                                    slider.setAttribute("value", "1");
+                                    slider.setAttribute("id", "range" + proceeder);
+
+
+                                    var br = document.createElement("br");
+
+                                    var body = document.getElementsByTagName("p1")[0];
+                                    body.appendChild(slider);
+                                    body.appendChild(br);
+
+                                    slider.addEventListener("click", function () {
+                                        // let d = document.getElementsByClassName('1');
+                                        // alert("did something");
+
+                                    });
+                                    myFanVar = [0, 0, 0];
+
+                                }
+
+                            };
+                            proceederCopy++;
+                        }
+                    }
+                }
+            }
+            xhr.open('GET', '/switching/<%=sendToken%>/buttonz/on', true);
+            xhr.send();
+        }
+
+
+
+        function getButtonStatus(payloadRepeat) {
+            var xhr = new XMLHttpRequest();
+            var statusCounter = 0;
+            var statusCounterCopy = 0;
+            // xhr.onreadystatechange = () => {
+            //     if (xhr.readyState == 4) {
+            //         if (xhr.status == 200) {
+            //             var payloadRepeat = xhr.responseText;
+
+            while (payloadRepeat[statusCounter]) {
+                if (payloadRepeat[statusCounter] == 9) {
+                    statusCounterCopy = statusCounter;
+                    statusCounterCopy++;
+                    while (payloadRepeat[statusCounterCopy] == 1 || payloadRepeat[statusCounterCopy] == 0) {
+                        if (payloadRepeat[statusCounterCopy] == 1) {
+                            let dop = document.getElementById("btn" + statusCounterCopy);
+                            dop.classList.remove("off");
+                            dop.classList.add("on");
+                            dop.innerHTML = "ON*";
+                        }
+                        else if (payloadRepeat[statusCounterCopy] == 0) {
+                            let dop = document.getElementById("btn" + statusCounterCopy);
+                            dop.classList.remove("on");
+                            dop.classList.add("off");
+                            dop.innerHTML = "OFF";
+                        }
+                        statusCounterCopy++;
+                    }
+                } else if (payloadRepeat[statusCounter] == 8) {
+                    let myAdder = 0;
+                    let myFanVar = [0, 0, 0];
+                    // console.log('hi dude')
+
+                    statusCounterCopy = statusCounter;
+                    statusCounterCopy++;
+
+                    while (payloadRepeat[statusCounterCopy] == 1 || payloadRepeat[statusCounterCopy] == 0) {
+                        if (payloadRepeat[statusCounterCopy] == 1) {
+                            myFanVar[myAdder] = "1";
+                            myAdder++;
+                        } else if (payloadRepeat[statusCounterCopy] == 0) {
+                            myFanVar[myAdder] = "0";
+                            myAdder++;
+                        }
+                        statusCounterCopy++;
+                    }
+                    myAdder = 0;
+                    if (myFanVar[0] == "1") {
+                        let dop = document.getElementById("range" + statusCounterCopy);
+                        dop.setAttribute("value", "5");
+                    } else if (myFanVar[1] == "1" && myFanVar[2] == "1") {
+                        let dop = document.getElementById("range" + statusCounterCopy);
+                        dop.setAttribute("value", "4");
+                    } else if (myFanVar[1] == "1") {
+                        let dop = document.getElementById("range" + statusCounterCopy);
+                        dop.setAttribute("value", "3");
+                    } else if (myFanVar[2] == "1") {
+                        let dop = document.getElementById("range" + statusCounterCopy);
+                        dop.setAttribute("value", "2");
+                    } else if (myFanVar[0] == "0" && myFanVar[1] == "0" && myFanVar[2] == "0") {
+                        let dop = document.getElementById("range" + statusCounterCopy);
+                        dop.setAttribute("value", "1");
+                    }
+
+                }
+                statusCounter++;
+            }
+
+        }
+        //         }
+        //     }
+        //     xhr.open('GET', '/switching/<%=sendToken%>/buttonz/on', true);
+        //     xhr.send();
+        // }
+
+        repeatingStatus = () => {
+            var xhr = new XMLHttpRequest;
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState == 4) {
+                    if (xhr.status == 200) {
+                        payloadRepeat = xhr.responseText;
+                        getButtonStatus(payloadRepeat);
+                    }
+                }
+            }
+            xhr.open('GET', '/switching/<%=sendToken%>/buttonz/on', true);
+            xhr.send();
+        }
+        setInterval(repeatingStatus, 2000);
+
+    </script>
+
+    <script>
+        const sec = document.querySelector(".sec");
+        const min = document.querySelector(".min");
+        const hr = document.querySelector(".hr");
+        setInterval(function () {
+            let time = new Date();
+            let secs = time.getSeconds() * 6;
+            let mins = time.getMinutes() * 6;
+            let hrs = time.getHours() * 30;
+            sec.style.transform = `rotateZ(${secs}deg)`;
+            min.style.transform = `rotateZ(${mins}deg)`;
+            hr.style.transform = `rotateZ(${hrs + (mins / 12)}deg)`;
+        });
+    </script>
+</body>
+
+</html>

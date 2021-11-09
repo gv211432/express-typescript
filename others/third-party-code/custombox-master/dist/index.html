@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="custombox.min.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="custombox.min.css" />
+    <title>Custombox.js</title>
+  </head>
+  <body>
+    <div id="modal" style="background-color: aquamarine; display: none">
+      <div>
+        <button type="button" class="close" onclick="$.fn.custombox('close');">
+          &times;
+        </button>
+        <h4>Title</h4>
+      </div>
+      <div>
+        <p>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cumque ex
+          obcaecati sit exercitationem incidunt tenetur maiores? Quibusdam
+          nesciunt, facere enim cupiditate, laboriosam, vel sint facilis ad
+          alias eos doloribus architecto.
+        </p>
+      </div>
+    </div>
+
+    <button id="demo">Click Me</button>
+  </body>
+  <script>
+    $(function () {
+      $("#demo").on("click", function (e) {
+        custombox.open({
+          target: "#modal",
+          effect: "fadein",
+        });
+        e.preventDefault();
+      });
+    });
+  </script>
+</html>

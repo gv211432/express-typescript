@@ -1,0 +1,83 @@
+<!-- This form is for sellers registration -->
+<!-- this contains field firstName lastName phone email username password -->
+
+<section id="contact" class="contact">
+  <div id="container" class="container">
+    <div id="signUpFormHere" class="row">
+      <div class="col-lg-7" data-aos="fade-right">
+        <div class="section-title">
+          <h2>Seller login</h2>
+          <p></p>
+        </div>
+      </div>
+
+      <form
+        action="/seller-login"
+        method="POST"
+        role="form"
+        class="php-email-form mt-6 col-md-4 main"
+      >
+        <!-- Email input field -->
+        <div class="form-group">
+          <input
+            type="email"
+            class="form-control box"
+            name="email"
+            id="email"
+            placeholder="seller@email.com"
+            data-rule="email"
+            data-msg="Please enter a valid email.*"
+          />
+          <div class="validate"></div>
+        </div>
+
+        <!-- This field takes password  in given format-->
+        <div class="form-group">
+          <input
+            type="password"
+            class="form-control box"
+            name="password"
+            id="password"
+            placeholder="Password"
+            data-rule="password"
+            data-msg="Password must contain one numeric, one special character and 
+                            length in between 7-16.*
+                            example (robert#1234)"
+          />
+          <div class="validate"></div>
+        </div>
+
+        <!-- This is to show the error message just in case.. -->
+        <!-- This is facilitated by the ejs template engine -->
+        <% if(messages.error){ %>
+        <div
+          style="
+            color: #fff;
+            background: #ed3c0d;
+            text-align: left;
+            padding: 15px;
+            font-weight: 500;
+            overflow-y: scroll;
+            margin-top: 25px;
+            margin-bottom: 25px;
+          "
+        >
+          <%= messages.error %>
+        </div>
+        <% } %>
+
+        <!-- <div><button type="submit">Submit</button></div> -->
+        <div class="text-center box">
+          <span>
+            <button type="submit">Submit</button>
+          </span>
+        </div>
+        <!-- <div class="giveMeLogin"></div> -->
+        <!-- <br> -->
+        <!-- <div id="getloginbutton"></div> -->
+      </form>
+
+      <br />
+    </div>
+  </div>
+</section>

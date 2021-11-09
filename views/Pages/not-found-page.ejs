@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- ===== Head tag ======= -->
+    <!-- This contains many css jquery bootstrap files -->
+    <%- include("../Components/headTag.ejs") %>
+    <!-- ===== End Head tag ======= -->
+  </head>
+
+  <body>
+    <!-- ======= Header ======= -->
+    <!-- This basically contains the bar navigator at the top.. -->
+    <%- include("../Components/header.ejs") %>
+    <!-- End Header -->
+
+    <div class="container">
+      <br /><br />
+      <div
+        class="card"
+        style="
+          width: 800px;
+          margin-top: 20%;
+          margin-left: auto;
+          margin-right: auto;
+        "
+      >
+        <div class="card-header">
+          <h1
+            class="badge"
+            style="background-color: #810303; color: white; font-size: 20px"
+          >
+            404!
+          </h1>
+          <h2>Error</h2>
+        </div>
+        <div class="card-body">
+          <h3>Page not found... :)</h3>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======= Footer ======= -->
+    <!-- Contiains all the footer elements and components -->
+    <%- include('../Components/footer.ejs') %>
+    <!-- End Footer -->
+
+    <script>
+      const urlParams = new URLSearchParams(window.location.search);
+      const info = urlParams.get("info");
+
+      if (info) {
+        const errorMessage = document.getElementById("error-message");
+        errorMessage.innerText = info;
+        errorMessage.style.display = "block";
+      }
+    </script>
+
+    <!-- Footer scripts -->
+    <!-- Contains all js and more for website -->
+    <%- include("../Components/footerScripts.ejs") %>
+    <!-- End Footer scripts  -->
+  </body>
+</html>

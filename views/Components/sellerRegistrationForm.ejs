@@ -1,0 +1,125 @@
+<!-- This form is for sellers registration -->
+<!-- this contains field firstName lastName phone email username password -->
+
+<section id="contact" class="contact">
+  <div id="container" class="container">
+    <div id="signUpFormHere" class="row">
+      <div class="col-lg-7" data-aos="fade-right">
+        <div class="section-title">
+          <h2>Seller Registration</h2>
+          <p></p>
+        </div>
+      </div>
+
+      <form
+        action="/seller_registration_handler"
+        method="post"
+        role="form"
+        class="php-email-form php2-email-form mt-6 col-md-4 main"
+      >
+        <div class="form-group">
+          <!-- first Name input field -->
+          <input
+            type="text"
+            name="firstName"
+            class="form-control box"
+            id="firstName"
+            placeholder="First name"
+            data-rule="minlen:2"
+            data-msg="Please enter at least 2 characters.*"
+          />
+          <div class="validate"></div>
+        </div>
+
+        <!-- Last name inut field -->
+        <div class="form-group">
+          <!-- Name input field -->
+          <input
+            type="text"
+            name="lastName"
+            class="form-control box"
+            id="lastName"
+            placeholder="Last name"
+            data-rule="minlen:0"
+          />
+          <!-- data-msg="Please enter at least 4 characters.*" -->
+          <div class="validate"></div>
+        </div>
+
+        <!-- Phone input field -->
+        <div class="form-group">
+          <input
+            type="phone"
+            class="form-control box"
+            name="phone"
+            id="phone"
+            placeholder="Phone no."
+            data-rule="phone"
+            data-msg="Phone number must be of 10 digits.*"
+          />
+          <div class="validate"></div>
+        </div>
+
+        <!-- Email input field -->
+        <div class="form-group">
+          <input
+            type="email"
+            class="form-control box"
+            name="email"
+            id="email"
+            placeholder="seller@email.com"
+            data-rule="email"
+            data-msg="Please enter a valid email.*"
+          />
+          <div class="validate"></div>
+        </div>
+
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control box"
+            name="username"
+            id="username"
+            placeholder="Create username"
+            data-rule="minlen:6"
+            data-msg="Username must be of size 6 characters."
+          />
+          <div class="validate"></div>
+        </div>
+
+        <div class="form-group">
+          <input
+            type="password"
+            class="form-control box"
+            name="password"
+            id="password"
+            placeholder="Password"
+            data-rule="password"
+            data-msg="Password must contain one numeric, one special character and 
+                          length in between 7-16.*
+                          example (robert#1234)"
+          />
+          <div class="validate"></div>
+        </div>
+
+        <div class="mb-3">
+          <div class="loading">Loading</div>
+          <div class="error-message"></div>
+          <div class="sent-message">Check your email for further process.</div>
+        </div>
+
+        <!-- <div><button type="submit">Submit</button></div> -->
+        <div class="text-center box">
+          <span>
+            <button type="submit">Submit</button>
+          </span>
+        </div>
+        <!-- <div class="giveMeLogin"></div> -->
+        <!-- <br> -->
+        <!-- <div id="getloginbutton"></div> -->
+      </form>
+
+      <br />
+    </div>
+  </div>
+</section>

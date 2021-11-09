@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- ===== Head tag ======= -->
+    <!-- This contains many css jquery bootstrap files -->
+    <%- include("../Components/headTag.ejs") %>
+    <!-- ===== End Head tag ======= -->
+  </head>
+
+  <body>
+    <!-- ======= Header ======= -->
+    <!-- This basically contains the bar navigator at the top.. -->
+    <%- include("../Components/header.ejs") %>
+    <!-- End Header -->
+
+    <div class="container jumbotron" style="margin-top: 8%">
+      <h1 style="text-align: center">
+        Welcome <%=firstName%>, hope you are doing great!!
+      </h1>
+    </div>
+
+    <section>
+      <div class="container jumbotron">
+        <div class="row">
+          <div class="btn-group-vertical col-sm-3" style="height: 150px">
+            <button
+              type="button"
+              class="btn dashboard-nav"
+              onclick="bringRemoteForm()"
+            >
+              Remote
+            </button>
+            <button type="button" class="btn dashboard-nav">Settings</button>
+            <button type="button" class="btn dashboard-nav">Profile</button>
+          </div>
+          <div class="card col-sm-9">
+            <div class="card-body" id="somethingBplaced"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer scripts -->
+    <!-- Contains all js and more for website -->
+    <%- include("../Components/footerScripts.ejs") %>
+    <!-- End Footer scripts  -->
+  </body>
+</html>
