@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  </head>
+  <body>
+    <div class="xyz">
+      <div class="abc"></div>
+      <div class="abc"></div>
+      <div class="abc"></div>
+    </div>
+  </body>
+  <script>
+    $(".abc").each(function (index) {
+      $(this).attr("id", "abc" + index);
+    });
+  </script>
+</html>

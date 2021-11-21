@@ -15,7 +15,7 @@
 
 <script type="text/javascript">
   $(function () {
-    $(".js__p_start, .js__p_another_start").simplePopup();
+    $(".js__p_start, .js__p_another_start, .js__p_third_start").simplePopup();
   });
 </script>
 
@@ -30,6 +30,7 @@
   type="text/css"
 />
 
+<!-- following is the function for the Image modal popup -->
 <script>
   // window.onbeforeunload = function () {
   //   return "Refreshing might break the site..";
@@ -40,7 +41,7 @@
   }
 
   $(function () {
-    function uiFix() {
+    function uiFixForImageModal() {
       if ($(window).width() <= 700) {
         console.log("changing flex");
         $("#img-info-container").css({
@@ -67,20 +68,47 @@
           "overflow-y": "scroll",
           "overflow-x": "hidden",
         });
+      } else {
+        $("#img-info-container").css({
+          display: "flex",
+          "flex-direction": "row",
+          "overflow-x": "hidden",
+          "overflow-y": "scroll",
+        });
+
+        $("#infoWindow").css({
+          "min-height": "700px",
+          width: "340px",
+          "z-index": 1,
+          "border-top": "1px solid black",
+          "overflow-x": "hidden",
+          "overflow-y": "scroll",
+          padding: "5px",
+        });
+
+        $("#imgWindow").css({
+          "margin-top": "-70px",
+          "padding-right": "220px",
+          "overflow-y": "scroll",
+          "overflow-x": "hidden",
+        });
       }
     }
 
-    uiFix();
+    uiFixForImageModal();
     $(window).resize(function () {
       // This will execute whenever the window is resized
       // $(window).height(); // New height
       // $(window).width(); // New width
       // console.log("Window Height " + $(window).height());
       // console.log("Window width " + $(window).width());
-      uiFix();
+      uiFixForImageModal();
     });
 
     let toRender = true;
+
+    // hiding the message elemet to be shown on successful profile change
+    $("#showMsg").hide();
     $("#clickMe").on("click", function () {
       if (toRender) {
         toRender = false;
@@ -118,9 +146,57 @@
                 console.log("Hi bro");
                 let ar = this.getAttribute("alt");
                 let index = ar.slice(3);
+                let thisImage = this;
                 // console.log(ar);
                 // console.log(index);
                 namePlace.text(dataArr[index].name);
+                $("#button-to-set")
+                  .attr("class", "btn btn-primary")
+                  .on("click", function () {
+                    console.log("Button clicked");
+                    // sending the get request to the responsible api to change the user profile image
+                    let xhr = new XMLHttpRequest();
+                    // setting the headers with cmd-mode and photo-id
+                    xhr.open("GET", "/edit-profile");
+                    xhr.onreadystatechange = function () {
+                      if (xhr.readyState == 4) {
+                        if (xhr.status == 200) {
+                          let temp = $("#showMsg")
+                            .text("Changed Profile")
+                            .attr("class", "alert alert-success pt-2 pb-2 mt-3")
+                            .slideDown();
+                          setInterval(() => {
+                            temp.slideUp();
+                          }, 3000);
+                        }
+                      }
+                    };
+                    xhr.setRequestHeader("cmd-mode", "change-user-img");
+                    xhr.setRequestHeader("photo-id", dataArr[index].id);
+                    xhr.send();
+                  });
+                $("#button-to-delete")
+                  .attr("class", "btn btn-danger")
+                  .on("click", function () {
+                    xhr.open("GET", "/edit-profile");
+                    xhr.onreadystatechange = function () {
+                      if (xhr.readyState == 4) {
+                        if (xhr.status == 200) {
+                          let temp = $("#showMsg")
+                            .attr("class", "alert alert-danger pt-2 pb-2 mt-3")
+                            .text("Image deleted")
+                            .slideDown();
+                          setInterval(() => {
+                            temp.slideUp();
+                          }, 3000);
+                          thisImage.hide();
+                        }
+                      }
+                    };
+                    xhr.setRequestHeader("cmd-mode", "delete-img");
+                    xhr.setRequestHeader("photo-id", dataArr[index].id);
+                    xhr.send();
+                  });
 
                 $("#info-name").text(dataArr[index].name);
                 $("#info-url").text(dataArr[index].url);

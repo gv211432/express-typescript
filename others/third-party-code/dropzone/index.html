@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dropzone</title>
+    <link rel="stylesheet" href="/dropzone.css" />
+    <script src="/dropzone.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body>
+    <!-- Change /upload-target to your upload address -->
+    <!-- <form action="/upload-target" class="dropzone"></form> -->
+
+    <!-- Or With An Input Field Fallback -->
+    <div
+      id="myUploader"
+      style="
+        border: 3px solid gray;
+        border-style: dashed;
+        height: 200px;
+        width: 200px;
+        border-radius: 10px;
+      "
+    >
+      <form action="/upload-target" class="dropzone">
+        <div class="fallback">
+          <input name="file" type="file" multiple />
+        </div>
+      </form>
+    </div>
+  </body>
+
+  <script>
+    // Vanilla JS
+    var myDropzone = new Dropzone("#myUploader", {
+      url: "upload-target",
+      // more configs here
+    });
+
+    myDropzone.on("drop", function () {
+      console.log("Files droped");
+    });
+    // jQuery
+    // $("div#myUploader").dropzone({
+    //   url: "upload-target",
+    //   // more configs here
+    // });
+  </script>
+</html>

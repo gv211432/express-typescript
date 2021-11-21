@@ -9,6 +9,10 @@
     border-radius: 5px;
   "
 >
+  <!-- this is the pupup window to pick up image for profile -->
+  <!-- ================================== -->
+  <!-- ================================== -->
+  <!-- This is modal no one -->
   <div
     style="
       position: sticky;
@@ -66,9 +70,10 @@
     <!-- this is the information window -->
     <div
       id="infoWindow"
+      class="container"
       style="
-        min-height: 800px;
-        width: 320px;
+        min-height: 100%;
+        width: 340px;
         z-index: -1;
         background-color: #fff6f6;
         border-left: 1px solid #810303;
@@ -76,6 +81,32 @@
         padding: 5px;
       "
     >
+      <div style="justify-content: center; align-items: center">
+        <center>
+          <div style="width: 100%" class="pb-2 btn-group" role="group">
+            <button id="button-to-set" class="btn btn-secondary pr-1 pl-">
+              Set Image
+            </button>
+            <button id="button-to-delete" class="btn btn-secondary pr-1 pl-">
+              Delete Image
+            </button>
+          </div>
+          <button
+            class="btn btn-outline-warning lal js__p_another_start"
+            style="width: 100%"
+          >
+            Add Images
+          </button>
+
+          <a href="/gallery">
+            <button class="btn btn-outline-success mt-2" style="width: 100%">
+              Open Gallery
+            </button>
+          </a>
+        </center>
+      </div>
+      <p class="alert alert-success pt-2 pb-2 mt-3" id="showMsg">hi gaurav</p>
+      <h3></h3>
       <p style="font-size: 16px; font-weight: bold">Name :</p>
       <p
         id="info-name"
@@ -125,4 +156,130 @@
       </p>
     </div>
   </div>
+</div>
+
+<!-- ================================== -->
+<!-- ================================== -->
+<!-- this is modal no two  -->
+
+<div
+  class="popup js__another_popup js__slide_top"
+  style="
+    overflow: hidden;
+    margin-top: -20px;
+    display: flex;
+    flex-direction: column;
+    z-index: 1000000;
+    border-radius: 5px;
+  "
+>
+  <!-- this is the pupup window to pick up image for profile -->
+  <div
+    style="
+      position: sticky;
+      top: 0;
+      left: 0;
+      background-color: #810303;
+      padding: 2px;
+    "
+  >
+    <span style="display: flex; flex-direction: row">
+      <h4
+        style="
+          margin-left: 20px;
+          font-weight: 600;
+          color: white;
+          padding-top: 5px;
+          z-index: 1000000;
+        "
+        id="nameHolder"
+      >
+        Drop or select images to upload
+      </h4>
+      <!-- <h4 style="font-size: 18px; margin-left: 10px">></h4> -->
+
+      <a href="#" class="p_close js__p_close" style="right: 20px; top: 5px">
+        <span></span><span></span>
+      </a>
+    </span>
+  </div>
+  <div
+    class="p_content container mr-2 ml-2"
+    style="margin-top: -70px; overflow-y: scroll; overflow-x: hidden"
+  >
+    <input
+      id="thefiles"
+      type="file"
+      name="files"
+      accept=".jpg, .png, image/jpeg, image/png"
+      multiple
+    />
+  </div>
+  <script type="text/javascript">
+    $(function () {
+      $("#thefiles").FancyFileUpload({
+        params: {
+          ref: "credentials",
+          refId: "<%=USER.id%>",
+          field: "docs",
+        },
+        url: "/upload",
+        edit: true,
+        retrydelay: 1000 * 10, //10 sec
+        maxfilesize: 1024 * 1024 * 2, // 2 Mb
+        retries: 2,
+      });
+    });
+  </script>
+</div>
+
+<!-- ================================== -->
+<!-- ================================== -->
+<!-- this is modal no three -->
+
+<div
+  class="popup js__third_popup js__slide_top"
+  style="
+    overflow: hidden;
+    margin-top: -20px;
+    display: flex;
+    flex-direction: column;
+    z-index: 1000000;
+    border-radius: 5px;
+  "
+>
+  <!-- this is the pupup window to pick up image for profile -->
+  <div
+    style="
+      position: sticky;
+      top: 0;
+      left: 0;
+      background-color: #810303;
+      padding: 2px;
+    "
+  >
+    <span style="display: flex; flex-direction: row">
+      <h4
+        style="
+          margin-left: 20px;
+          font-weight: 600;
+          color: white;
+          padding-top: 5px;
+          z-index: 1000000;
+        "
+        id="nameHolder"
+      >
+        This is gallery
+      </h4>
+      <!-- <h4 style="font-size: 18px; margin-left: 10px">></h4> -->
+
+      <a href="#" class="p_close js__p_close" style="right: 20px; top: 5px">
+        <span></span><span></span>
+      </a>
+    </span>
+  </div>
+  <div
+    class="p_content container mr-2 ml-2"
+    style="margin-top: -70px; overflow-y: scroll; overflow-x: hidden"
+  ></div>
 </div>

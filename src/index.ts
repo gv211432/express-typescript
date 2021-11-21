@@ -24,6 +24,9 @@ import {
 import { Get_Requests } from "./GET_REQUEST";
 import { Post_Requests } from "./POST_REQUESTS";
 import { getJwtToken, resetJwtToken, isTokenValid } from "./Jwt_Token";
+// to open firefox for debugging..
+import { exec } from "child_process";
+
 resetJwtToken();
 
 // app.use(express.static(__dirname + "/" + front_DIR));
@@ -83,3 +86,9 @@ app.listen(ENV_VAR.serverPort, () => {
       "\n\n"
   );
 });
+
+if (ENV_VAR.development_STATUS) {
+  exec(`firefox http://${ENV_VAR.serverHost}:${ENV_VAR.serverPort}`, () => {
+    console.log(`Opening In browser`);
+  });
+}

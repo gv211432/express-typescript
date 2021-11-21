@@ -10,27 +10,35 @@
 
     <script type="text/javascript">
       $(function () {
-        $(".js__p_start, .js__p_another_start").simplePopup();
+        $(
+          ".js__p_start, .js__p_another_start, .js__p_third_start"
+        ).simplePopup();
       });
     </script>
   </head>
   <body>
     <div class="p_anch">
-      <a href="#" class="lal js__p_start">Click me 1</a>, чтобы вызвать
-      всплывающее окно
+      <a href="#" class="js__p_start">Click me 1</a>, чтобы вызвать всплывающее
+      окно
     </div>
 
     <div class="p_anch">
-      <a href="#" class="lal js__p_another_start">Click me 2</a>, чтобы вызвать
-      еще одно всплывающее окно
+      <a href="#" class="js__p_another_start">Click me 2</a>, чтобы вызвать еще
+      одно всплывающее окно
     </div>
 
-    <div class="p_anch p_anch_bottom">
-      <a href="#" class="lal js__p_start">Click me 3</a>One more style
+    <div class="p_anch">
+      <a href="#" class="js__p_third_start">Click me 3</a> this is going to be
+      third popup
     </div>
 
-    <div class="p_body js__p_body js__fadeout"></div>
+    <!-- <div class="p_anch">
+      <a href="#" class="lal js__p_start">Click me 3</a> One more style
+    </div> -->
 
+    <!-- <div class="p_body js__p_body js__fadeout"></div> -->
+
+    <!-- content 0ne -->
     <div class="popup js__popup js__slide_top">
       <a href="#" class="p_close js__p_close" title="First model">
         <span></span><span></span>
@@ -38,11 +46,22 @@
       <div class="p_content">Is this the content</div>
     </div>
 
+    <!-- conten two -->
     <div class="popup js__another_popup js__slide_top">
       <a href="#" class="p_close js__p_close" title="Second modal">
         <span></span><span></span>
       </a>
       <div class="p_content">Another content is this</div>
     </div>
+
+    <!-- conten third -->
+    <div class="popup js__third_popup js__slide_top">
+      <a href="#" class="p_close js__p_close" title="Second modal">
+        <span></span><span></span>
+      </a>
+      <div class="p_content">Another content is third</div>
+    </div>
+
+    <!-- ======================== -->
   </body>
 </html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fancy file uploader</title>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      type="text/javascript"
+      src="fancy-file-uploader/jquery.ui.widget.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="fancy-file-uploader/fancy_fileupload.css"
+      type="text/css"
+      media="all"
+    />
+    <script
+      type="text/javascript"
+      src="fancy-file-uploader/jquery.fileupload.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="fancy-file-uploader/jquery.iframe-transport.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="fancy-file-uploader/jquery.fancy-fileupload.js"
+    ></script>
+  </head>
+  <body>
+    <input
+      id="thefiles"
+      type="file"
+      name="files"
+      accept=".jpg, .png, image/jpeg, image/png"
+      multiple
+    />
+  </body>
+  <script type="text/javascript">
+    $(function () {
+      $("#thefiles").FancyFileUpload({
+        params: {
+          action: "http://localhost:3000/upload",
+          method: "POST",
+          ref: "credentials",
+          field: "docs",
+        },
+        maxfilesize: 1000000,
+      });
+    });
+  </script>
+</html>

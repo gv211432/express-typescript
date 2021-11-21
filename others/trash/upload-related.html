@@ -12,8 +12,7 @@
       <input type="file" name="files" accept="image/*" multiple />
       <input type="text" name="ref" value="credentials" />
       <input type="text" name="refId" value="6154359d5288e8424a94ec09" />
-      <input type="text" name="field" value="userImg" />
-      <input type="text" name="alternativeText" value="" />
+      <input type="text" name="field" value="docs" />
       <input type="submit" value="Submit" />
     </form>
 
@@ -33,7 +32,7 @@
           }
         };
 
-        request.open("POST", "http://localhost:3000/upload/");
+        request.open("POST", "http://localhost:3000/test/");
         request.setRequestHeader(
           "Authorization",
           "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNGI2Y2ZiMjUwNjQ1NzE1M2VjNTE0ZSIsImlhdCI6MTYzNjMwMTYwOSwiZXhwIjoxNjM4ODkzNjA5fQ.kdL6gTujOzhQ2vX0e4yg5ixbDLhz1m6vfBhj1NZjt8k"

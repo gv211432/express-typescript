@@ -3,7 +3,7 @@
 // ┃╺┓┃  ┃ ┃┣┻┓┣━┫┃      ┃┃┣━┫ ┃ ┣━┫
 // ┗━┛┗━╸┗━┛┗━┛╹ ╹┗━╸   ╺┻┛╹ ╹ ╹ ╹ ╹
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getNewUserData = exports.setNewUserData = exports.getUserData = exports.setUserData = exports.getSellerData = exports.setSellerData = void 0;
+exports.getNewUserData = exports.setNewUserData = exports.setUserDataImg = exports.setUserDataDocs = exports.getUserData = exports.setUserData = exports.getSellerData = exports.setSellerData = void 0;
 let __sellerData = {
     ac_active: false,
     ac_blocked: false,
@@ -41,6 +41,14 @@ let setUserData = (data) => {
     __userData = data;
 };
 exports.setUserData = setUserData;
+let setUserDataDocs = (data) => {
+    __userData.docs = data;
+};
+exports.setUserDataDocs = setUserDataDocs;
+let setUserDataImg = (data) => {
+    __userData.userImg = data;
+};
+exports.setUserDataImg = setUserDataImg;
 let getUserData = () => __userData;
 exports.getUserData = getUserData;
 let __newUserData = {

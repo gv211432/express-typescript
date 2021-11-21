@@ -161,6 +161,33 @@
         "wholeMatch": false
       },
       "color": "gray"
+    },
+    {
+      "pattern": {
+        "type": "string",
+        "expression": "  <!-- This is modal no one -->\n",
+        "ignoreCase": false,
+        "wholeMatch": false
+      },
+      "color": "gray"
+    },
+    {
+      "pattern": {
+        "type": "string",
+        "expression": "<!-- this is modal no two  -->\n",
+        "ignoreCase": false,
+        "wholeMatch": false
+      },
+      "color": "gray"
+    },
+    {
+      "pattern": {
+        "type": "string",
+        "expression": "<!-- this is modal no three -->\n",
+        "ignoreCase": false,
+        "wholeMatch": false
+      },
+      "color": "gray"
     }
   ]
 }

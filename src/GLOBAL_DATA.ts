@@ -47,12 +47,12 @@ interface IUserData {
   address_line_1: string;
   address_line_2: string;
   address_line_3: string;
-  userImg: {
+  userImg?: {
     id: string;
     name: string;
     url: string;
   };
-  docs: any[];
+  docs?: any[];
 }
 
 let __userData: IUserData = {
@@ -74,6 +74,14 @@ let __userData: IUserData = {
 
 let setUserData = (data: IUserData) => {
   __userData = data;
+};
+
+let setUserDataDocs = (data: any[]) => {
+  __userData.docs = data;
+};
+
+let setUserDataImg = (data: { id: string; name: string; url: string }) => {
+  __userData.userImg = data;
 };
 let getUserData = (): IUserData => __userData;
 
@@ -106,6 +114,8 @@ export {
   ISellerData,
   setUserData,
   getUserData,
+  setUserDataDocs,
+  setUserDataImg,
   IUserData,
   setNewUserData,
   getNewUserData,

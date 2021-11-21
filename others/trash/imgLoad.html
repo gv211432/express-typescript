@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Img Loaded</title>
+  </head>
+  <body>
+    <img src="null0" />
+  </body>
+  <script>
+    window.addEventListener("load", (event) => {
+      var image = document.querySelector("img");
+
+      var imgSrcArr = ["null1", "null2", "https://picsum.photos/200/300"];
+
+      let index = 0; // img index to be incremented
+
+      let thisInterval = setInterval(() => {
+        var isLoaded = image.complete && image.naturalHeight !== 0;
+        console.log("Checking Image => " + index);
+        if (isLoaded) {
+          // if image is loaded
+          console.log(isLoaded);
+          console.log("Image loaded :)");
+          clearInterval(thisInterval); // clearInterval
+        } else {
+          console.log("Changing img source=> " + index);
+          image.setAttribute("src", imgSrcArr[index]);
+          if (index <= imgSrcArr.length) {
+            index++;
+          }
+        }
+      }, 2000);
+    });
+  </script>
+</html>

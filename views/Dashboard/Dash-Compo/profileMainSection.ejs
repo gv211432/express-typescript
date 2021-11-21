@@ -26,7 +26,17 @@
             "
           >
             <div class="img-circle-big">
-              <img src="/img?mode=user-img" alt="Profile" />
+              <!-- <img src="/img?mode=user-img" alt="Profile" /> -->
+              <div
+                style="
+                  background-image: url('/img?mode=user-img');
+                  width: 125px;
+                  height: 125px;
+                  background-size: contain;
+                  background-position: center;
+                  border-radius: 50%;
+                "
+              ></div>
             </div>
             <h2><%=USER.firstName%> <%=USER.lastName%></h2>
             <h3>Web Designer</h3>

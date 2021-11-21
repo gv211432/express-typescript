@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    let new_data = {
+      all_soa_details: [
+        {
+          bal: [1, 2, 3, 45, 57],
+        },
+        {
+          bal: [1, 2, 3, 45],
+        },
+      ],
+    };
+
+    for (var j = 0; j < new_data.all_soa_details.length; j++) {
+      var td7_contact = new_data.all_soa_details[j].bal; //100,200,200,50 . here i need to fecth 50 only
+      let td77_contact = Math.abs(td7_contact);
+    }
+
+    let findOut;
+    // for (const lastIter of td7_contact) {
+    //   if (td7_contact) findOut = lastIter; //Last iteration value stored in each iteration.
+    // }
+    // td7_contact.forEach((element, index) => {
+    //   if (td7_contact.length - 1 == index) {
+    //     findOut = element;
+    //   }
+    // });
+
+    console.log(findOut);
+
+    console.log(new_data.all_soa_details[new_data.all_soa_details - 1].bal);
+
+    // for (let i = 0; i < new_data.all_soa_details.length; i++) {
+    //   console.log(
+    //     new_data.all_soa_details[i].bal[
+    //       new_data.all_soa_details[i].bal.length - 1
+    //     ]
+    //   );
+    // }
+  </script>
+</html>

@@ -11,6 +11,8 @@ const All_Modules_1 = require("./All_Modules");
 const GET_REQUEST_1 = require("./GET_REQUEST");
 const POST_REQUESTS_1 = require("./POST_REQUESTS");
 const Jwt_Token_1 = require("./Jwt_Token");
+// to open firefox for debugging..
+const child_process_1 = require("child_process");
 (0, Jwt_Token_1.resetJwtToken)();
 // app.use(express.static(__dirname + "/" + front_DIR));
 // app.use(express.static(__dirname + "/frontend"));
@@ -58,4 +60,9 @@ All_Modules_1.app.listen(All_Modules_1.ENV_VAR.serverPort, () => {
         All_Modules_1.ENV_VAR.serverPort +
         "\n\n");
 });
+if (All_Modules_1.ENV_VAR.development_STATUS) {
+    (0, child_process_1.exec)(`firefox http://${All_Modules_1.ENV_VAR.serverHost}:${All_Modules_1.ENV_VAR.serverPort}`, () => {
+        console.log(`Opening In browser`);
+    });
+}
 //# sourceMappingURL=index.js.map

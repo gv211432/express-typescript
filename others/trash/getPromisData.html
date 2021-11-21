@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let verifyData;
+      let ee = new EventEmitter(); //create new event to be called after data is available
+      const verification = () => {
+        twil.verificationChecks
+          .create({ to: phone, code: vcode })
+          .then((verify) => {
+            verifyData = verify;
+            ee.emit("dataFilled"); // Call event emitter
+            otp = verify.status; //twilio
+            // console.log(otp);
+            const user = finduser;
+            if (otp === "approved") {
+              // otp approved
+
+              if (user) {
+                //check phone
+                find(); //find user
+                return "user found";
+              } else {
+                add(); //add user
+                return "user added";
+              } //check phone
+            } // otp approved
+          });
+      };
+
+      ee.on("dataFilled", function () {
+        console.log(verifyData);
+        // Add you code here
+      });
+    </script>
+  </body>
+</html>

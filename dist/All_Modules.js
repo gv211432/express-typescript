@@ -85,6 +85,7 @@ const ENV_VAR = {
     graphql_PASS: process.env.GRAPHQL_PASS,
     strapi_PORT: process.env.STRAPI_PORT,
     strapi_HOST: process.env.STRAPI_HOST,
+    development_STATUS: process.env.DEVELOPMENT,
 };
 exports.ENV_VAR = ENV_VAR;
 // ======================== Home made functions ==========================

@@ -88,11 +88,11 @@
         location.hash = simplePopup.settings.hashtag;
       },
 
-      hash: function (popup, body, routePopup) {
-        if (location.hash === routePopup) {
-          simplePopup.show(popup, body, routePopup);
-        }
-      },
+      // hash: function (popup, body, routePopup) {
+      //   if (location.hash === routePopup) {
+      //     simplePopup.show(popup, body, routePopup);
+      //   }
+      // },
     };
 
     return this.each(function () {

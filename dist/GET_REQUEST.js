@@ -79,6 +79,103 @@ All_Modules_1.router.get("/gallery", PassportConfig.checkAuthUser, (req, res) =>
 All_Modules_1.router.get("/modal", PassportConfig.checkAuthUser, (req, res) => {
     res.sendFile(All_Modules_1.path.join(__dirname, "..", "Resources", "Modal_jQuery", "index.html"));
 });
+All_Modules_1.router.get("/edit-profile", PassportConfig.checkAuthUser, (req, res) => {
+    console.log(req.headers);
+    console.log(req.headers["photo-id"]);
+    // console.log(req.headers["account-id"]);
+    let data;
+    function getData() {
+        return __awaiter(this, void 0, void 0, function* () {
+            data = GlobalData.getUserData();
+        });
+    }
+    getData().then(() => {
+        switch (req.headers["cmd-mode"]) {
+            case "change-user-img":
+                (0, All_Modules_1.axios)({
+                    url: `${All_Modules_1.ENV_VAR.graphql_URL}`,
+                    method: "post",
+                    headers: {
+                        authorization: `Bearer ${(0, Jwt_Token_1.getJwtToken)()}`,
+                    },
+                    data: {
+                        query: `
+            mutation updateCrted{
+              updateCredential(
+                input:{
+                  data:{
+                    userImg:"${req.headers["photo-id"]}"
+                  }
+                  where:{id:"${data.id}"}
+                }
+              ){
+                credential{
+                  userImg{
+                    id
+                    name
+                    url  
+                  }
+                }
+              }
+            }
+            `,
+                    },
+                })
+                    .then((result) => {
+                    // console.log(result);
+                    let payload = result.data.data.updateCredential.credential.userImg;
+                    // console.log(data.docs);
+                    // console.log(result.data.data.updateCredential.credential.userImg);
+                    GlobalData.setUserDataImg(payload);
+                    console.log("Image changed successfully");
+                    res.status(200).send("ok");
+                })
+                    .catch((e) => {
+                    res.status(400).json(e);
+                });
+                break;
+            // this code access the delete api of graphql linked
+            // with strapi and deletes the given id object
+            case "delete-img":
+                (0, All_Modules_1.axios)({
+                    url: `${All_Modules_1.ENV_VAR.graphql_URL}`,
+                    method: "post",
+                    headers: {
+                        authorization: `Bearer ${(0, Jwt_Token_1.getJwtToken)()}`,
+                    },
+                    data: {
+                        query: `
+            mutation files{
+              deleteFile(
+                input:{
+                  where:{
+                    id:"${req.headers["photo-id"]}"
+                  }
+                }
+              ){
+                file{
+                  id
+                }
+              }
+            }
+            `,
+                    },
+                })
+                    .then((result) => {
+                    // console.log(result);
+                    console.log("Image Deleted successfully");
+                    res.status(200).send("ok");
+                })
+                    .catch((e) => {
+                    res.status(400).json(e);
+                });
+                break;
+            default:
+                res.status(400).send("Error");
+        }
+    });
+    // if(req.body.)
+});
 // router.get("/img", PassportConfig.checkAuthUser, (req, res) => {})
 All_Modules_1.router.get("/img", PassportConfig.checkAuthUser, (req, res) => {
     // this field containd the main url of the image
@@ -97,28 +194,69 @@ All_Modules_1.router.get("/img", PassportConfig.checkAuthUser, (req, res) => {
     function decided() {
         return __awaiter(this, void 0, void 0, function* () {
             getUrl().then(() => {
-                if (data.userImg) {
-                    switch (req.query.mode) {
-                        case "user-img":
+                switch (req.query.mode) {
+                    case "user-img":
+                        if (data.userImg) {
                             res.set("Content-Type", "image/jpeg");
                             url = `http://localhost:1337${data.userImg.url}`;
                             toProceed = true;
-                            break;
-                        case "gallery":
-                            res.set("Content-Type", "application/json");
-                            let payload = JSON.stringify(data.docs);
+                        }
+                        else {
+                            res.sendFile(All_Modules_1.path.join(__dirname, "..", All_Modules_1.ENV_VAR.frontend_DIR, "broken.png"));
+                            return;
+                        }
+                        break;
+                    case "gallery":
+                        res.set("Content-Type", "application/json");
+                        (0, All_Modules_1.axios)({
+                            url: `${All_Modules_1.ENV_VAR.graphql_URL}`,
+                            method: "post",
+                            headers: {
+                                authorization: `Bearer ${(0, Jwt_Token_1.getJwtToken)()}`,
+                            },
+                            data: {
+                                query: `
+              query findDocs{
+                credentials(
+                  where:{
+                    id:"${data.id}"
+                  }
+                ){
+                  userImg{
+                    url
+                    id
+                    size
+                   }
+                  docs{
+                    id
+                    name
+                    size
+                    height
+                    width
+                    mime
+                    url 
+                    formats
+                  }
+                }
+              }
+              `,
+                            },
+                        })
+                            .then((result) => {
+                            // console.log(result.data.data.credentials[0].docs);
+                            // res.status(200).send(result.data.data.credentials.docs);
+                            let payload = JSON.stringify(result.data.data.credentials[0].docs);
                             // console.log(data.docs);
                             // console.log(payload);
                             res.send(`{"urls":${payload}}`);
-                            return false;
-                        default:
-                            res.sendFile(All_Modules_1.path.join(__dirname, "..", All_Modules_1.ENV_VAR.frontend_DIR, "broken.png"));
-                            return;
-                    }
-                }
-                else {
-                    res.sendFile(All_Modules_1.path.join(__dirname, "..", All_Modules_1.ENV_VAR.frontend_DIR, "broken.png"));
-                    return;
+                        })
+                            .catch((e) => {
+                            res.status(400).json(e);
+                        });
+                        break;
+                    default:
+                        res.sendFile(All_Modules_1.path.join(__dirname, "..", All_Modules_1.ENV_VAR.frontend_DIR, "broken.png"));
+                        return;
                 }
             });
             return;
@@ -148,21 +286,26 @@ All_Modules_1.router.get("/img", PassportConfig.checkAuthUser, (req, res) => {
 All_Modules_1.router.get("/hi", (req, res) => {
     res.json({ hi: "hi" });
 });
-All_Modules_1.router.get("/upload/*", (req, res) => {
+All_Modules_1.router.get("/upload/*", PassportConfig.checkAuthUser, (req, res) => {
     console.log(req.url);
+    console.log(req.body);
+    console.log(req.params);
+    res.json({ success: true });
     // console.log(req.params.extraUrl);
     // res.send("Hi dude");
-    req
-        .pipe((0, All_Modules_1.request)({
-        headers: {
-            Authorization: `Bearer ${(0, Jwt_Token_1.getJwtToken)()}`,
-        },
-        qs: req.query,
-        uri: `${All_Modules_1.ENV_VAR.strapi_HOST}:${All_Modules_1.ENV_VAR.strapi_PORT + req.url}`,
-    }))
-        .pipe(res);
+    // req
+    //   .pipe(
+    //     request({
+    //       headers: {
+    //         Authorization: `Bearer ${getJwtToken()}`,
+    //       },
+    //       qs: req.query,
+    //       uri: `${ENV_VAR.strapi_HOST}:${ENV_VAR.strapi_PORT + req.url}`,
+    //     })
+    //   )
+    //   .pipe(res);
 });
-All_Modules_1.router.get("/uploads/*", (req, res) => {
+All_Modules_1.router.get("/uploads/*", PassportConfig.checkAuthUser, (req, res) => {
     // console.log(req.url);
     // console.log(req.baseUrl);
     // console.log(req.subdomains);
