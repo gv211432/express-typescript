@@ -8,7 +8,7 @@ const All_Modules_1 = require("../All_Modules");
 // importing the required modules
 // this validates all the field before rechecked by the database ..
 var seller_login_validate = [
-    (0, All_Modules_1.check)("email", "Email Address must be valid.")
+    All_Modules_1.check("email", "Email Address must be valid.")
         .not()
         .isEmpty()
         .withMessage("Email can not be empty")
@@ -16,7 +16,7 @@ var seller_login_validate = [
         .trim()
         .escape()
         .normalizeEmail(),
-    (0, All_Modules_1.check)("password")
+    All_Modules_1.check("password")
         .not()
         .isEmpty()
         .withMessage("Password can not be empty")

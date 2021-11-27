@@ -5,19 +5,19 @@ const All_Modules_1 = require("../All_Modules");
 const Jwt_Token_1 = require("../Jwt_Token");
 const Passport_Config_1 = require("../Passport_Config");
 var sales_data_validate = [
-    (0, All_Modules_1.check)("name")
+    All_Modules_1.check("name")
         .not()
         .isEmpty()
         .withMessage("Name can not be empty")
         .isLength({ min: 3 })
         .withMessage("Name must be at least 3 character."),
-    (0, All_Modules_1.check)("phone")
+    All_Modules_1.check("phone")
         .not()
         .isEmpty()
         .withMessage("Password can not be empty")
         .isLength({ min: 10 })
         .withMessage("Phone number must be 10 digits."),
-    (0, All_Modules_1.check)("email", "Email Address must be valid.")
+    All_Modules_1.check("email", "Email Address must be valid.")
         .not()
         .isEmpty()
         .withMessage("Email can not be empty")
@@ -25,15 +25,15 @@ var sales_data_validate = [
         .trim()
         .escape()
         .normalizeEmail(),
-    (0, All_Modules_1.check)("addressLine1").not().isEmpty().withMessage("This field can be empty!"),
-    (0, All_Modules_1.check)("pincode")
+    All_Modules_1.check("addressLine1").not().isEmpty().withMessage("This field can be empty!"),
+    All_Modules_1.check("pincode")
         .not()
         .isEmpty()
         .withMessage("This field can not be empty!")
         .isNumeric()
         .withMessage("Must be a numeric value")
         .isLength({ min: 6, max: 6 }),
-    (0, All_Modules_1.check)("qty")
+    All_Modules_1.check("qty")
         .not()
         .isEmpty()
         .withMessage("Minimum one device is required for registration.")
@@ -42,7 +42,7 @@ var sales_data_validate = [
         .isLength({ min: 1, max: 1 }),
 ];
 All_Modules_1.router.post("/sales-page-handler", Passport_Config_1.checkAuthSeller, sales_data_validate, (req, res) => {
-    const errors = (0, All_Modules_1.validationResult)(req);
+    const errors = All_Modules_1.validationResult(req);
     try {
         // Trying to handle this request on error validations..
         // If error object is not empty, then
@@ -68,15 +68,15 @@ All_Modules_1.router.post("/sales-page-handler", Passport_Config_1.checkAuthSell
         // this is where new device ids are created for the new connections
         for (let i = 0; i < req.body.qty; i++) {
             // generating new device ids for the given number of devices..
-            deviceArr.push((0, All_Modules_1.uuidv4)());
+            deviceArr.push(All_Modules_1.uuidv4());
         }
         // console.log(device);
         // getting the last cumulativeOrderNumber for adding and saving
-        (0, All_Modules_1.axios)({
+        All_Modules_1.axios({
             url: `http://${All_Modules_1.ENV_VAR.serverHost}:${All_Modules_1.ENV_VAR.strapi_PORT}/sales-infos?_sort=createdAt:DESC&_limit=1`,
             method: "get",
             headers: {
-                authorization: `Bearer ${(0, Jwt_Token_1.getJwtToken)()}`,
+                authorization: `Bearer ${Jwt_Token_1.getJwtToken()}`,
             },
         })
             .then((result) => {
@@ -97,11 +97,11 @@ All_Modules_1.router.post("/sales-page-handler", Passport_Config_1.checkAuthSell
             let devicePayload = deviceArr.map((i) => '"' + i + '"');
             // Sending the new sales info to db for storage
             // tryig to send the data to the graphql server to save to database..
-            (0, All_Modules_1.axios)({
+            All_Modules_1.axios({
                 url: `${All_Modules_1.ENV_VAR.graphql_URL}`,
                 method: "post",
                 headers: {
-                    authorization: `Bearer ${(0, Jwt_Token_1.getJwtToken)()}`,
+                    authorization: `Bearer ${Jwt_Token_1.getJwtToken()}`,
                 },
                 data: {
                     query: `

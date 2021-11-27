@@ -43,12 +43,7 @@ var seller_reg_validate = [
     .escape()
     .normalizeEmail(),
 
-  check("username")
-    .not()
-    .isEmpty()
-    .withMessage("Device ID can not be empty")
-    .isLength({ min: 10, max: 15 })
-    .withMessage("Device ID must be in between length 10-15."),
+  check("username").not().isEmpty().withMessage("username cannot be empty"),
 
   check("password")
     .not()

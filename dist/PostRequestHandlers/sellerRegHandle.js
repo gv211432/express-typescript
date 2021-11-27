@@ -11,19 +11,19 @@ const Passport_Config_1 = require("../Passport_Config");
 // importing the required modules
 // this validates all the field befor rechecked by the database ..
 var seller_reg_validate = [
-    (0, All_Modules_1.check)("firstName")
+    All_Modules_1.check("firstName")
         .not()
         .isEmpty()
         .withMessage("Name can not be empty")
         .isLength({ min: 3 })
         .withMessage("Name must be at least 3 character."),
-    (0, All_Modules_1.check)("phone")
+    All_Modules_1.check("phone")
         .isLength({ min: 10 })
         .not()
         .isEmpty()
         .withMessage("Password can not be empty")
         .withMessage("Phone number must be 10 digits."),
-    (0, All_Modules_1.check)("email", "Email Address must be valid.")
+    All_Modules_1.check("email", "Email Address must be valid.")
         .not()
         .isEmpty()
         .withMessage("Email can not be empty")
@@ -31,13 +31,8 @@ var seller_reg_validate = [
         .trim()
         .escape()
         .normalizeEmail(),
-    (0, All_Modules_1.check)("username")
-        .not()
-        .isEmpty()
-        .withMessage("Device ID can not be empty")
-        .isLength({ min: 10, max: 15 })
-        .withMessage("Device ID must be in between length 10-15."),
-    (0, All_Modules_1.check)("password")
+    All_Modules_1.check("username").not().isEmpty().withMessage("username cannot be empty"),
+    All_Modules_1.check("password")
         .not()
         .isEmpty()
         .withMessage("Password can not be empty")
@@ -55,7 +50,7 @@ var seller_reg_validate = [
 All_Modules_1.router.post("/seller_registration_handler", Passport_Config_1.checkNotAuthSeller, seller_reg_validate, (req, res) => {
     console.log(req.body);
     //   On error just return the error message in the validation array up above..
-    const errors = (0, All_Modules_1.validationResult)(req);
+    const errors = All_Modules_1.validationResult(req);
     if (!errors.isEmpty()) {
         // return res.status(200).send("Server issues, please try in some time..");
         let err = JSON.stringify(errors);
@@ -91,11 +86,11 @@ All_Modules_1.router.post("/seller_registration_handler", Passport_Config_1.chec
                 };
                 console.log(payload);
                 // tryig to send the data to the graphql server to save to database..
-                (0, All_Modules_1.axios)({
+                All_Modules_1.axios({
                     url: `${All_Modules_1.ENV_VAR.graphql_URL}`,
                     method: "post",
                     headers: {
-                        authorization: `Bearer ${(0, Jwt_Token_1.getJwtToken)()}`,
+                        authorization: `Bearer ${Jwt_Token_1.getJwtToken()}`,
                     },
                     data: {
                         query: `
@@ -115,11 +110,11 @@ All_Modules_1.router.post("/seller_registration_handler", Passport_Config_1.chec
                     if (response1.data.data.sallerDetails.length == 0) {
                         // Sending the seller data to db for storage
                         // tryig to send the data to the graphql server to save to database..
-                        (0, All_Modules_1.axios)({
+                        All_Modules_1.axios({
                             url: `${All_Modules_1.ENV_VAR.graphql_URL}`,
                             method: "post",
                             headers: {
-                                authorization: `Bearer ${(0, Jwt_Token_1.getJwtToken)()}`,
+                                authorization: `Bearer ${Jwt_Token_1.getJwtToken()}`,
                             },
                             data: {
                                 query: `

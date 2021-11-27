@@ -7,25 +7,25 @@ const Jwt_Token_1 = require("../Jwt_Token");
 // const PassportConfig = require("../Passport_Config");
 // Validation for Handling form for contact purpose
 var contactingvalidate = [
-    (0, All_Modules_1.check)("email", "Email must be in proper format.")
+    All_Modules_1.check("email", "Email must be in proper format.")
         .not()
         .isEmpty()
         .withMessage("Email can not be empty")
         .isEmail()
         .trim()
         .escape(),
-    (0, All_Modules_1.check)("subject")
+    All_Modules_1.check("subject")
         .not()
         .isEmpty()
         .withMessage("Subject can not be empty")
         .trim()
         .escape(),
-    (0, All_Modules_1.check)("message")
+    All_Modules_1.check("message")
         .isLength({ min: 10, max: 1000 })
         .not()
         .isEmpty()
         .withMessage("Message can not be empty"),
-    (0, All_Modules_1.check)("name")
+    All_Modules_1.check("name")
         .not()
         .isEmpty()
         .withMessage("Name can not be empty")
@@ -35,7 +35,7 @@ var contactingvalidate = [
 // writing into database for contacting people
 All_Modules_1.router.post("/forms/contact", contactingvalidate, (req, res) => {
     //   On error just return the error message in the validation array up above..
-    const errors = (0, All_Modules_1.validationResult)(req);
+    const errors = All_Modules_1.validationResult(req);
     if (!errors.isEmpty()) {
         // return res.status(200).send("Server issues, please try in some time..");
         let err = JSON.stringify(errors);
@@ -57,11 +57,11 @@ All_Modules_1.router.post("/forms/contact", contactingvalidate, (req, res) => {
         subject: req.body.subject,
         message: req.body.message,
     };
-    (0, All_Modules_1.axios)({
+    All_Modules_1.axios({
         url: `${All_Modules_1.ENV_VAR.graphql_URL}`,
         method: "post",
         headers: {
-            authorization: `Bearer ${(0, Jwt_Token_1.getJwtToken)()}`,
+            authorization: `Bearer ${Jwt_Token_1.getJwtToken()}`,
         },
         data: {
             query: `

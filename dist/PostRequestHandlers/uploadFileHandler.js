@@ -22,9 +22,9 @@ All_Modules_1.router.use("/upload", Passport_Config_1.checkAuthUser, (req, res) 
     if (req.method === "POST") {
         function uploadForm() {
             return __awaiter(this, void 0, void 0, function* () {
-                let source = req.pipe((0, All_Modules_1.request)({
+                let source = req.pipe(All_Modules_1.request({
                     headers: {
-                        Authorization: `Bearer ${(0, Jwt_Token_1.getJwtToken)()}`,
+                        Authorization: `Bearer ${Jwt_Token_1.getJwtToken()}`,
                     },
                     qs: req.query,
                     uri: `${All_Modules_1.ENV_VAR.strapi_HOST}:${All_Modules_1.ENV_VAR.strapi_PORT}/upload`,

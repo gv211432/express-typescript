@@ -7,14 +7,14 @@ const Jwt_Token_1 = require("../Jwt_Token");
 const Passport_Config_1 = require("../Passport_Config");
 // list for checking new signing accounts
 var signup_validate = [
-    (0, All_Modules_1.check)("email", "Username Must Be an Email Address")
+    All_Modules_1.check("email", "Username Must Be an Email Address")
         .not()
         .isEmpty()
         .withMessage("Email can not be empty")
         .isEmail()
         .trim()
         .escape(),
-    (0, All_Modules_1.check)("password")
+    All_Modules_1.check("password")
         .not()
         .isEmpty()
         .withMessage("Password can not be empty")
@@ -26,23 +26,23 @@ var signup_validate = [
         .withMessage("Password Must Contain an Uppercase Letter")
         .trim()
         .escape(),
-    (0, All_Modules_1.check)("phone")
+    All_Modules_1.check("phone")
         .isLength({ min: 10 })
         .withMessage("Phone number must be 10 digits."),
-    (0, All_Modules_1.check)("firstName")
+    All_Modules_1.check("firstName")
         .not()
         .isEmpty()
         .withMessage("Name can not be empty")
         .isLength({ min: 4 })
         .withMessage("Name must be at least 4 character."),
-    (0, All_Modules_1.check)("lastName")
+    All_Modules_1.check("lastName")
         .isLength({ min: 2 })
         .withMessage("Name must be at least 2 character."),
 ];
 All_Modules_1.router.post("/sign_up", Passport_Config_1.checkAuthNewUser, signup_validate, (req, res) => {
     console.log(req.body);
     //   On error just return the error message in the validation array up above..
-    const errors = (0, All_Modules_1.validationResult)(req);
+    const errors = All_Modules_1.validationResult(req);
     if (!errors.isEmpty()) {
         // return res.status(200).send("Server issues, please try in some time..");
         let err = JSON.stringify(errors);
@@ -75,11 +75,11 @@ All_Modules_1.router.post("/sign_up", Passport_Config_1.checkAuthNewUser, signup
                 };
                 console.log(payload);
                 // tryig to send the data to the graphql server to save to database..
-                (0, All_Modules_1.axios)({
+                All_Modules_1.axios({
                     url: `${All_Modules_1.ENV_VAR.graphql_URL}`,
                     method: "post",
                     headers: {
-                        authorization: `Bearer ${(0, Jwt_Token_1.getJwtToken)()}`,
+                        authorization: `Bearer ${Jwt_Token_1.getJwtToken()}`,
                     },
                     data: {
                         query: `
@@ -99,11 +99,11 @@ All_Modules_1.router.post("/sign_up", Passport_Config_1.checkAuthNewUser, signup
                     if (response1.data.data.credentials.length == 0) {
                         // Sending the seller data to db for storage
                         // tryig to send the data to the graphql server to save to database..
-                        (0, All_Modules_1.axios)({
+                        All_Modules_1.axios({
                             url: `${All_Modules_1.ENV_VAR.graphql_URL}`,
                             method: "post",
                             headers: {
-                                authorization: `Bearer ${(0, Jwt_Token_1.getJwtToken)()}`,
+                                authorization: `Bearer ${Jwt_Token_1.getJwtToken()}`,
                             },
                             data: {
                                 query: `

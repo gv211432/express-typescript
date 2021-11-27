@@ -92,11 +92,11 @@ All_Modules_1.router.get("/edit-profile", PassportConfig.checkAuthUser, (req, re
     getData().then(() => {
         switch (req.headers["cmd-mode"]) {
             case "change-user-img":
-                (0, All_Modules_1.axios)({
+                All_Modules_1.axios({
                     url: `${All_Modules_1.ENV_VAR.graphql_URL}`,
                     method: "post",
                     headers: {
-                        authorization: `Bearer ${(0, Jwt_Token_1.getJwtToken)()}`,
+                        authorization: `Bearer ${Jwt_Token_1.getJwtToken()}`,
                     },
                     data: {
                         query: `
@@ -137,11 +137,11 @@ All_Modules_1.router.get("/edit-profile", PassportConfig.checkAuthUser, (req, re
             // this code access the delete api of graphql linked
             // with strapi and deletes the given id object
             case "delete-img":
-                (0, All_Modules_1.axios)({
+                All_Modules_1.axios({
                     url: `${All_Modules_1.ENV_VAR.graphql_URL}`,
                     method: "post",
                     headers: {
-                        authorization: `Bearer ${(0, Jwt_Token_1.getJwtToken)()}`,
+                        authorization: `Bearer ${Jwt_Token_1.getJwtToken()}`,
                     },
                     data: {
                         query: `
@@ -208,11 +208,11 @@ All_Modules_1.router.get("/img", PassportConfig.checkAuthUser, (req, res) => {
                         break;
                     case "gallery":
                         res.set("Content-Type", "application/json");
-                        (0, All_Modules_1.axios)({
+                        All_Modules_1.axios({
                             url: `${All_Modules_1.ENV_VAR.graphql_URL}`,
                             method: "post",
                             headers: {
-                                authorization: `Bearer ${(0, Jwt_Token_1.getJwtToken)()}`,
+                                authorization: `Bearer ${Jwt_Token_1.getJwtToken()}`,
                             },
                             data: {
                                 query: `
@@ -266,7 +266,7 @@ All_Modules_1.router.get("/img", PassportConfig.checkAuthUser, (req, res) => {
     decided().then(() => {
         if (toProceed) {
             try {
-                (0, All_Modules_1.request)({
+                All_Modules_1.request({
                     url: url,
                     encoding: null,
                 }, (err, resp, buffer) => {
@@ -312,9 +312,9 @@ All_Modules_1.router.get("/uploads/*", PassportConfig.checkAuthUser, (req, res) 
     // console.log(req.params.extraUrl);
     // res.send("Hi dude");
     req
-        .pipe((0, All_Modules_1.request)({
+        .pipe(All_Modules_1.request({
         headers: {
-            Authorization: `Bearer ${(0, Jwt_Token_1.getJwtToken)()}`,
+            Authorization: `Bearer ${Jwt_Token_1.getJwtToken()}`,
         },
         qs: req.query,
         uri: `${All_Modules_1.ENV_VAR.strapi_HOST}:${All_Modules_1.ENV_VAR.strapi_PORT + req.url}`,
