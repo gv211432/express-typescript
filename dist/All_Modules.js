@@ -20,7 +20,7 @@ dotenv_1.default.config();
 // This is the fastest way to start a http server
 const express_1 = __importDefault(require("express"));
 exports.express = express_1.default;
-const app = express_1.default();
+const app = (0, express_1.default)();
 exports.app = app;
 // this is used to pipe the request form the nodejs api to other api
 const http_1 = __importDefault(require("http"));

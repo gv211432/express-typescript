@@ -22,7 +22,7 @@ const resetJwtToken = () => {
     }
     catch (err) { }
     //   Creaing a post request to generate a new token.
-    All_Modules_1.axios({
+    (0, All_Modules_1.axios)({
         url: `${All_Modules_1.ENV_VAR.graphql_URL}`,
         method: "post",
         data: {

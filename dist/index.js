@@ -13,18 +13,18 @@ const POST_REQUESTS_1 = require("./POST_REQUESTS");
 const Jwt_Token_1 = require("./Jwt_Token");
 // to open firefox for debugging..
 const child_process_1 = require("child_process");
-Jwt_Token_1.resetJwtToken();
+(0, Jwt_Token_1.resetJwtToken)();
 // app.use(express.static(__dirname + "/" + front_DIR));
 // app.use(express.static(__dirname + "/frontend"));
 // console.log(__dirname);
-All_Modules_1.app.use(All_Modules_1.cors());
+All_Modules_1.app.use((0, All_Modules_1.cors)());
 All_Modules_1.app.use(All_Modules_1.express.static(All_Modules_1.path.join(__dirname, "..", All_Modules_1.ENV_VAR.frontend_DIR)));
 // app.use(express.static(path.join(__dirname, "Raw_Sources/NiceAdmin")));
 // Tamplets engine settings (EJS)
 All_Modules_1.app.set("view engine", "ejs");
 All_Modules_1.app.set("views", "./views");
 // initailizing the express flash
-All_Modules_1.app.use(All_Modules_1.flash());
+All_Modules_1.app.use((0, All_Modules_1.flash)());
 // =================================================================================
 // =================================================================================
 // importing session
@@ -41,7 +41,7 @@ All_Modules_1.app.use(All_Modules_1.express.urlencoded({ extended: true }));
 All_Modules_1.app.use(expressSession);
 /*  PASSPORT SETUP  */
 const Passport_Config_1 = require("./Passport_Config");
-Passport_Config_1.passportConfig(All_Modules_1.passport);
+(0, Passport_Config_1.passportConfig)(All_Modules_1.passport);
 // passport middlewar setup
 All_Modules_1.app.use(All_Modules_1.passport.initialize());
 All_Modules_1.app.use(All_Modules_1.passport.session());
@@ -61,7 +61,7 @@ All_Modules_1.app.listen(All_Modules_1.ENV_VAR.serverPort, () => {
         "\n\n");
 });
 if (All_Modules_1.ENV_VAR.development_STATUS) {
-    child_process_1.exec(`firefox http://${All_Modules_1.ENV_VAR.serverHost}:${All_Modules_1.ENV_VAR.serverPort}`, () => {
+    (0, child_process_1.exec)(`firefox http://${All_Modules_1.ENV_VAR.serverHost}:${All_Modules_1.ENV_VAR.serverPort}`, () => {
         console.log(`Opening In browser`);
     });
 }

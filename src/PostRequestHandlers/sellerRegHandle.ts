@@ -24,11 +24,11 @@ var seller_reg_validate = [
     .not()
     .isEmpty()
     .withMessage("Name can not be empty")
-    .isLength({ min: 3 })
+    .isLength({ min: 2 })
     .withMessage("Name must be at least 3 character."),
 
   check("phone")
-    .isLength({ min: 10 })
+    .isLength({ min: 10, max: 15 })
     .not()
     .isEmpty()
     .withMessage("Password can not be empty")

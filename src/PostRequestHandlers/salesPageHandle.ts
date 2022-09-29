@@ -119,8 +119,8 @@ router.post(
             newCumulativeOrderNo = Number(payload.qty);
           }
           console.log(newCumulativeOrderNo);
-          let deviceJson = JSON.stringify({ ids: deviceArr });
-          let devicePayload = deviceArr.map((i) => '"' + i + '"');
+          // let deviceJson = JSON.stringify({ ids: deviceArr });
+          // let devicePayload = deviceArr.map((i) => '"' + i + '"');
 
           // Sending the new sales info to db for storage
           // tryig to send the data to the graphql server to save to database..
@@ -128,6 +128,8 @@ router.post(
             url: `${ENV_VAR.graphql_URL}`,
             method: "post",
             headers: {
+              "X-XSS-Protection": 1,
+              mode: "block",
               authorization: `Bearer ${getJwtToken()}`,
             },
             data: {
@@ -166,7 +168,6 @@ router.post(
                     cumulativeOrderNo
                     soldAt
                     taxGst
-
                   }
                 }
               }

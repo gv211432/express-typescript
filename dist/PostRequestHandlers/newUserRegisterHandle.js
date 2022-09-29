@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.newUserData = exports.newUserRegisterHandle = void 0;
 const All_Modules_1 = require("../All_Modules");
 var new_user_validate = [
-    All_Modules_1.check("email", "Email Address must be valid.")
+    (0, All_Modules_1.check)("email", "Email Address must be valid.")
         .not()
         .isEmpty()
         .withMessage("Email can not be empty")
@@ -11,7 +11,7 @@ var new_user_validate = [
         .trim()
         .escape()
         .normalizeEmail(),
-    All_Modules_1.check("order")
+    (0, All_Modules_1.check)("order")
         .not()
         .isEmpty()
         .matches("[0-9]")

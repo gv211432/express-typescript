@@ -38,11 +38,11 @@ const passportConfig = (passport) => {
         // get the email form the database using order variable and match the email
         // on success let the user to create new account...
         // console.log("it is working");
-        All_Modules_1.axios({
+        (0, All_Modules_1.axios)({
             url: `${All_Modules_1.ENV_VAR.graphql_URL}`,
             method: "post",
             headers: {
-                authorization: `Bearer ${Jwt_Token_1.getJwtToken()}`,
+                authorization: `Bearer ${(0, Jwt_Token_1.getJwtToken)()}`,
             },
             data: {
                 query: `
@@ -109,11 +109,11 @@ const passportConfig = (passport) => {
         passwordField: "password", // this is the virtual field on the model
     }, function (email, password, done) {
         // console.log(email, password);
-        All_Modules_1.axios({
+        (0, All_Modules_1.axios)({
             url: `${All_Modules_1.ENV_VAR.graphql_URL}`,
             method: "post",
             headers: {
-                authorization: `Bearer ${Jwt_Token_1.getJwtToken()}`,
+                authorization: `Bearer ${(0, Jwt_Token_1.getJwtToken)()}`,
             },
             data: {
                 query: `
@@ -225,11 +225,11 @@ const passportConfig = (passport) => {
         passwordField: "password", // this is the virtual field on the model
     }, function (email, password, done) {
         try {
-            All_Modules_1.axios({
+            (0, All_Modules_1.axios)({
                 url: `${All_Modules_1.ENV_VAR.graphql_URL}`,
                 method: "post",
                 headers: {
-                    authorization: `Bearer ${Jwt_Token_1.getJwtToken()}`,
+                    authorization: `Bearer ${(0, Jwt_Token_1.getJwtToken)()}`,
                 },
                 data: {
                     query: `
